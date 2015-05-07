@@ -1,4 +1,4 @@
-package br.com.starship.desktop.factory;
+package br.com.estore.web.factory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
