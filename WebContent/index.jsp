@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Shop Homepage - Start Bootstrap Template</title>
+    <title>eStore</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -39,19 +40,29 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="#">eStore</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">About</a>
+                	<li>
+                        <a href="#">Livros</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
-                    </li>
+                        <a href="#">Sobre nós</a>
+                    </li>                    
                     <li>
-                        <a href="#">Contact</a>
+                        <a href="#">Contato</a>
+                    </li>                                        
+                    <li>
+                    	<!-- Login -->
+                    	<form method="post" action="login" class="navbar-form navbar-left" role="search">
+  							<div class="form-group">
+    							<input id="txtUsuario" name="txtUsuario" type="text" class="form-control" placeholder="Usuário">
+    							<input id="txtSenha" name="txtSenha" type="password" class="form-control" placeholder="Senha">
+  							</div>
+  							<button type="submit" class="btn btn-default">Logar</button>
+						</form>
                     </li>
                 </ul>
             </div>
@@ -65,8 +76,18 @@
 
         <div class="row">
 
-            <div class="col-md-3">
-                <p class="lead">Shop Name</p>
+            <div class="col-md-3">            	
+				<c:choose>
+					<c:when test="${!empty usuario.nome}">
+						<p class="lead">Bem vindo, ${usuario.nome}</p>				    
+				  	</c:when>
+				  	<c:when test="${!empty erro}">
+						<p class="lead">${erro}</p>				    
+				  	</c:when>				  	
+				  	<c:otherwise>				    
+				  		<p class="lead">Bem vindo, Visitante</p>
+				  	</c:otherwise>
+				</c:choose>             
                 <div class="list-group">
                     <a href="#" class="list-group-item">Category 1</a>
                     <a href="#" class="list-group-item">Category 2</a>
@@ -110,8 +131,8 @@
                 <div class="row">
 
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
+                        <div class="thumbnail">                        
+                            <img src="img/capa/the_book_of_trees.jpg" alt="">
                             <div class="caption">
                                 <h4 class="pull-right">$24.99</h4>
                                 <h4><a href="#">First Product</a>
@@ -133,7 +154,7 @@
 
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="img/muqueca_da_nega_A_Dan_a_dos_Drag_es.jpg" alt="">
+                            <img src="img/capa/danca_dos_dragoes.jpg" alt="">
                             <div class="caption">
                                 <h4 class="pull-right">$64.99</h4>
                                 <h4><a href="#">Second Product</a>
@@ -152,10 +173,9 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
+                            <img src="img/capa/harry_potter_1.jpg" alt="">
                             <div class="caption">
                                 <h4 class="pull-right">$74.99</h4>
                                 <h4><a href="#">Third Product</a>
@@ -174,10 +194,9 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
+                            <img src="img/capa/the_lord_of_the_rings.jpg" alt="">
                             <div class="caption">
                                 <h4 class="pull-right">$84.99</h4>
                                 <h4><a href="#">Fourth Product</a>
@@ -196,10 +215,9 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
+                            <img src="img/capa/mvc_book.jpg" alt="">
                             <div class="caption">
                                 <h4 class="pull-right">$94.99</h4>
                                 <h4><a href="#">Fifth Product</a>
@@ -258,5 +276,4 @@
     <script src="js/bootstrap.min.js"></script>
 
 </body>
-
 </html>
