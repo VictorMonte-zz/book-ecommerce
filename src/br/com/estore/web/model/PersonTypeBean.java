@@ -6,6 +6,14 @@ public enum PersonTypeBean {
     private int value;
 
     private PersonTypeBean(int value) {
-            this.value = value;
+            this.setValue(value);
     }
+
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
+	}
 }

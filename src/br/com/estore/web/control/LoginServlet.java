@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		try {
-			tratarRequisicao(request, response);
+			treatingRequest(request, response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,14 +34,14 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		try {
-			tratarRequisicao(request, response);
+			treatingRequest(request, response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	private void tratarRequisicao(HttpServletRequest request,
+	private void treatingRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {		
 		try {
 			

@@ -64,7 +64,7 @@
 					</form>
 				</li>
 				<li><a href="">Cadastre-me</a></li>
-			</ul>
+			</ul>			
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
@@ -110,15 +110,15 @@
 							</ol>
 							<div class="carousel-inner">
 								<div class="item active">
-									<img class="slide-image" src="http://placehold.it/800x300"
+									<img class="slide-image" src="img/banner/banner-desconto-1.jpg"
 										alt="">
 								</div>
 								<div class="item">
-									<img class="slide-image" src="http://placehold.it/800x300"
+									<img class="slide-image" src="img/banner/banner-desconto-2.jpg"
 										alt="">
 								</div>
 								<div class="item">
-									<img class="slide-image" src="http://placehold.it/800x300"
+									<img class="slide-image" src="img/banner/banner-desconto-3.jpg"
 										alt="">
 								</div>
 							</div>
@@ -135,8 +135,7 @@
 				</div>
 
 				<div class="row">
-														
-					<%-- <c:forEach items="${listOfBooks}" var="book">
+					<c:forEach items="${listOfBooks}" var="book">
 						<div class="col-sm-4 col-lg-4 col-md-4">
 							<div class="thumbnail">
 								<img src="img/capa/${book.Image} }" alt="${ book.Name } }">
@@ -163,7 +162,7 @@
 								</div>
 							</div>
 						</div>
-					</c:forEach> --%>
+					</c:forEach>
 
 					<div class="col-sm-4 col-lg-4 col-md-4">
 						<div class="thumbnail">

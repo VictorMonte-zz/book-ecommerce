@@ -1,11 +1,11 @@
 package br.com.estore.web.model;
 
-public enum AccessTypeBean {
-	Administrator(1),Customer(2),Seller(3);
+public enum GenderBean {
+	Masculino('M'),Feminino('F');
 	
-    private int value;
+	private int value;
 
-    private AccessTypeBean(int value) {
+    private GenderBean(int value) {
             this.setValue(value);
     }
 
