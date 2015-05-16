@@ -13,8 +13,8 @@ public class ConnectionFactory {
 		// MYSQL
 
 		String driverName = "com.mysql.jdbc.Driver";
-		String url = "jdbc:mysql://localhost/test";
-		String username = "admin";
+		String url = "jdbc:mysql://localhost/mydb";
+		String username = "root";
 		String password = "";
 
 		// Load the JDBC driver

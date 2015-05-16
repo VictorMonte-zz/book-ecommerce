@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import br.com.estore.web.dao.UsuarioDAO;
-import br.com.estore.web.model.UsuarioBean;
+import br.com.estore.web.dao.UserDAO;
+import br.com.estore.web.model.UserBean;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -45,23 +45,23 @@ public class LoginServlet extends HttpServlet {
 			HttpServletResponse response) throws Exception {		
 		try {
 			
-			String usuario = request.getParameter("txtUsuario");
-			String senha = request.getParameter("txtSenha");
+			String login = request.getParameter("txtLogin");
+			String password = request.getParameter("txtPassword");
 			
-			UsuarioDAO dao = new UsuarioDAO();
+			UserDAO DataAccess = new UserDAO();
 			
-			UsuarioBean u = new UsuarioBean(usuario,senha);			
+			UserBean User = new UserBean(login,password);			
 			
-			UsuarioBean usuarioLogado = dao.carregarUsuario(u);
+			User = DataAccess.getUser(User);
 			
 			String url = "index.jsp";
 			
-			if(usuarioLogado == null){				
-				request.setAttribute("erro", "Credenciais Invalidas");
+			if(User == null){				
+				request.setAttribute("error", "Credenciais Invalidas");
 			}
 			else{
 				HttpSession session = request.getSession(true);
-				session.setAttribute("usuario", usuarioLogado);
+				session.setAttribute("user", User);
 			}
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
