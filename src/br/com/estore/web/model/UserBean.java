@@ -1,103 +1,130 @@
 package br.com.estore.web.model;
 
 public class UserBean {
-	private String Name;
-	private String CPFCNPJ;
-	private String Email;
-	private char Gender;
-	private String Phone;
-	private String CEP;
-	private String Address;
-	private String Neighborhood;
-	private int Number;
-	private String Login;
-	private String Password;
-	private AccessTypeBean AccessType;
-	private PersonTypeBean PersonType;
+	private String name;
+	private String cpfcnpj;
+	private String email;
+	private char gender;
+	private String phone;
+	private String cep;
+	private String address;
+	private String neighborhood;
+	private int number;
+	private String login;
+	private String password;
+	private AccessTypeBean accessType;
+	private PersonTypeBean personType;
 	
 	public UserBean(){}
 	
-	public UserBean(String Login, String Password){
-		this.Login = Login;
-		this.Password = Password;
+	public UserBean(String login, String password){
+		this.login = login;
+		this.password = password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getCpfcnpj() {
+		return cpfcnpj;
+	}
+
+	public void setCpfcnpj(String cpfcnpj) {
+		this.cpfcnpj = cpfcnpj;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public char getGender() {
+		return gender;
+	}
+
+	public void setGender(char gender) {
+		this.gender = gender;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getNeighborhood() {
+		return neighborhood;
+	}
+
+	public void setNeighborhood(String neighborhood) {
+		this.neighborhood = neighborhood;
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public AccessTypeBean getAccessType() {
+		return accessType;
+	}
+
+	public void setAccessType(AccessTypeBean accessType) {
+		this.accessType = accessType;
+	}
+
+	public PersonTypeBean getPersonType() {
+		return personType;
+	}
+
+	public void setPersonType(PersonTypeBean personType) {
+		this.personType = personType;
 	}
 	
-	public String getName() {
-		return Name;
-	}
-	public void setName(String name) {
-		Name = name;
-	}
-	public String getCPFCNPJ() {
-		return CPFCNPJ;
-	}
-	public void setCPFCNPJ(String cPFCNPJ) {
-		CPFCNPJ = cPFCNPJ;
-	}
-	public String getEmail() {
-		return Email;
-	}
-	public void setEmail(String email) {
-		Email = email;
-	}
-	public char getGender() {
-		return Gender;
-	}
-	public void setGender(char gender) {
-		Gender = gender;
-	}
-	public String getPhone() {
-		return Phone;
-	}
-	public void setPhone(String phone) {
-		Phone = phone;
-	}
-	public String getCEP() {
-		return CEP;
-	}
-	public void setCEP(String cEP) {
-		CEP = cEP;
-	}
-	public String getAddress() {
-		return Address;
-	}
-	public void setAddress(String address) {
-		Address = address;
-	}
-	public String getNeighborhood() {
-		return Neighborhood;
-	}
-	public void setNeighborhood(String neighborhood) {
-		Neighborhood = neighborhood;
-	}
-	public int getNumber() {
-		return Number;
-	}
-	public void setNumber(int number) {
-		Number = number;
-	}
-	public String getLogin() {
-		return Login;
-	}
-	public void setLogin(String login) {
-		Login = login;
-	}
-	public String getPassword() {
-		return Password;
-	}
-	public void setPassword(String password) {
-		Password = password;
-	}
-	public AccessTypeBean getAccessType() {
-		return AccessType;
-	}
-	public void setAccessType(AccessTypeBean accessType) {
-		AccessType = accessType;
-	}
-	public PersonTypeBean getPersonType() {
-		return PersonType;
-	}
-	public void setPersonType(PersonTypeBean personType) {
-		PersonType = personType;
-	}	
+	
 }
