@@ -1,7 +1,7 @@
 package br.com.estore.web.model;
 
 public enum PersonTypeBean {
-	Individuals(1),legalEntity(2);
+	Individuals(1),LegalEntity(2);
 	
     private int value;
 

@@ -7,7 +7,7 @@ public class UserBean {
 	private char gender;
 	private String phone;
 	private String cep;
-	private String address;
+	private String street;
 	private String neighborhood;
 	private int number;
 	private String login;
@@ -70,12 +70,12 @@ public class UserBean {
 		this.cep = cep;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getStreet() {
+		return street;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setStreet(String street) {
+		this.street = street;
 	}
 
 	public String getNeighborhood() {

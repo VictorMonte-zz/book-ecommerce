@@ -1,105 +1,131 @@
 package br.com.estore.web.model;
 
 public class BookBean {
-	private int ID;
-	private String Title;
-	private Double Value;
-	private int ISBN;
-	private int PageNumber;
-	private int Year;
-	private String Idiom;
-	private String Description;
-	private int AuthorCode;	
-	private int Categorie;	
-	private int PublishingHouseCode;	  
-	private int GenderCode;	  
-	private int PromotionCode;	  
-	private int CommentCode;
-	
-	public int getID() {
-		return ID;
+	private int id;
+	private String title;
+	private Double value;
+	private int isbn;
+	private int pageNumber;
+	private int year;
+	private String idiom;
+	private String description;
+	private int authorCode;
+	private int categorie;
+	private int publishingHouseCode;
+	private int genderCode;
+	private int promotionCode;
+	private int commentCode;
+
+	public int getId() {
+		return id;
 	}
-	public void setID(int iD) {
-		ID = iD;
+
+	public void setId(int id) {
+		this.id = id;
 	}
+
 	public String getTitle() {
-		return Title;
+		return title;
 	}
+
 	public void setTitle(String title) {
-		Title = title;
+		this.title = title;
 	}
+
 	public Double getValue() {
-		return Value;
+		return value;
 	}
+
 	public void setValue(Double value) {
-		Value = value;
+		this.value = value;
 	}
-	public int getISBN() {
-		return ISBN;
+
+	public int getIsbn() {
+		return isbn;
 	}
-	public void setISBN(int iSBN) {
-		ISBN = iSBN;
+
+	public void setIsbn(int isbn) {
+		this.isbn = isbn;
 	}
+
 	public int getPageNumber() {
-		return PageNumber;
+		return pageNumber;
 	}
+
 	public void setPageNumber(int pageNumber) {
-		PageNumber = pageNumber;
+		this.pageNumber = pageNumber;
 	}
+
 	public int getYear() {
-		return Year;
+		return year;
 	}
+
 	public void setYear(int year) {
-		Year = year;
+		this.year = year;
 	}
+
 	public String getIdiom() {
-		return Idiom;
+		return idiom;
 	}
+
 	public void setIdiom(String idiom) {
-		Idiom = idiom;
+		this.idiom = idiom;
 	}
+
 	public String getDescription() {
-		return Description;
+		return description;
 	}
+
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
+
 	public int getAuthorCode() {
-		return AuthorCode;
+		return authorCode;
 	}
+
 	public void setAuthorCode(int authorCode) {
-		AuthorCode = authorCode;
+		this.authorCode = authorCode;
 	}
+
 	public int getCategorie() {
-		return Categorie;
+		return categorie;
 	}
+
 	public void setCategorie(int categorie) {
-		Categorie = categorie;
+		this.categorie = categorie;
 	}
+
 	public int getPublishingHouseCode() {
-		return PublishingHouseCode;
+		return publishingHouseCode;
 	}
+
 	public void setPublishingHouseCode(int publishingHouseCode) {
-		PublishingHouseCode = publishingHouseCode;
+		this.publishingHouseCode = publishingHouseCode;
 	}
+
 	public int getGenderCode() {
-		return GenderCode;
+		return genderCode;
 	}
+
 	public void setGenderCode(int genderCode) {
-		GenderCode = genderCode;
+		this.genderCode = genderCode;
 	}
+
 	public int getPromotionCode() {
-		return PromotionCode;
+		return promotionCode;
 	}
+
 	public void setPromotionCode(int promotionCode) {
-		PromotionCode = promotionCode;
+		this.promotionCode = promotionCode;
 	}
+
 	public int getCommentCode() {
-		return CommentCode;
+		return commentCode;
 	}
+
 	public void setCommentCode(int commentCode) {
-		CommentCode = commentCode;
+		this.commentCode = commentCode;
 	}
-	
-	
+
 }
