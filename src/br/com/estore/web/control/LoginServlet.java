@@ -48,20 +48,20 @@ public class LoginServlet extends HttpServlet {
 			String login = request.getParameter("txtLogin");
 			String password = request.getParameter("txtPassword");
 			
-			UserDAO DataAccess = new UserDAO();
+			UserDAO dao = new UserDAO();
 			
-			UserBean User = new UserBean(login,password);			
+			UserBean user = new UserBean(login,password);			
 			
-			User = DataAccess.getUser(User);
+			user = dao.get(login, password);
 			
 			String url = "index.jsp";
 			
-			if(User == null){				
+			if(user == null){				
 				request.setAttribute("error", "Credenciais Invalidas");
 			}
 			else{
 				HttpSession session = request.getSession(true);
-				session.setAttribute("user", User);
+				session.setAttribute("user", user);
 			}
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
