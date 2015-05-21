@@ -47,36 +47,55 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="#">Livros</a></li>
-				<li><a href="#">Sobre nós</a></li>
+				<li><a href="index.jsp">Livros</a></li>
+				<li><a href="#">Sobre</a></li>
 				<li><a href="#">Contato</a></li>
-				<li>
-					<!-- Login -->
-					<form method="post" action="login" class="navbar-form navbar-left"
-						role="search">
-						<div class="form-group">
-							<input id="txtLogin" name="txtLogin" type="text"
-								class="form-control" placeholder="Usuário"> <input
-								id="txtPassword" name="txtPassword" type="password"
-								class="form-control" placeholder="Senha">
-						</div>
-						<button type="submit" class="btn btn-default">Logar</button>
-					</form>
-				</li>
-				<li><a href="">Cadastre-me</a></li>
+				<li role="presentation" class="dropdown"><a
+					class="dropdown-toggle" data-toggle="dropdown" href="#"
+					role="button" aria-expanded="false"> Cadastro <span
+						class="caret"></span>
+				</a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="Crud.html">Livros</a></li>
+						<li><a href="Crud.html">Autores</a></li>
+						<li><a href="Crud.html">Categoria</a></li>
+						<li class="divider"></li>
+						<li><a href="Crud.html">Promoção</a></li>
+					</ul></li>
 			</ul>			
+			<ul class="nav navbar-nav">
+                  	<li class="divider-vertical"></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" href="#" data-toggle="dropdown">Login<strong class="caret"></strong></a>
+						<div class="dropdown-menu" style="padding: 20px; padding-bottom: 0px;">
+							<br/>
+							<form method="post" action="login" accept-charset="UTF-8" role="search">
+								
+								<input style="margin-bottom: 15px;" type="text" placeholder="Usuário" id="txtLogin" name="txtLogin">
+								
+								<input style="margin-bottom: 15px;" type="password" placeholder="Senha" id="txtPassword" name="txtPassword">
+								
+								<input style="float: left; margin-right: 10px;" type="checkbox" name="remember-me" id="remember-me" value="1">
+								
+								<label class="string optional" for="user_remember_me"> Remember me</label>
+								
+								<input class="btn btn-primary" type="submit" id="sign-in" value="Entra">
+								<input class="btn btn-primary" type="submit" id="sign-in" value="Cadastra">
+								
+							</form>
+							<br/>
+							<br/>
+						</div>
+					</li>
+				</ul>
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container --> </nav>
 
-	<!-- Page Content -->
-	<div class="container">
-
-		<div class="row">
-
-			<div class="col-md-3">
-				<c:choose>
+	<!-- Page Content 
+	<!--
+	<c:choose>
 					<c:when test="${!empty user.name}">
 						<p class="lead">Bem vindo, ${user.name}</p>
 					</c:when>
@@ -86,14 +105,58 @@
 					<c:otherwise>
 						<p class="lead">Bem vindo, Visitante</p>
 					</c:otherwise>
-				</c:choose>
-				<div class="list-group">
-					<a href="#" class="list-group-item">Categoria</a> <a href="#"
-						class="list-group-item">Editor</a> <a href="#"
-						class="list-group-item">Autor</a> <a href="#"
-						class="list-group-item">Livros</a>
-				</div>
+				</c:choose> 
+	-->
+	
+	<div class="container">
+
+		<div class="row">
+				
+			<div class="col-md-3">
+			<p class="lead">Categorias</p>			
+			<div class="list-group">
+				<a href="#" class="list-group-item">   Viagem  </a>
+				<a href="#" class="list-group-item">    Infantil </a>
+				<a href="#" class="list-group-item">    Teen </a>
+				<a href="#" class="list-group-item">    Metodologia de Pesquisa </a>
+				<a href="#" class="list-group-item">    Sustentabilidade </a>
+				<a href="#" class="list-group-item">    Videogames </a>
+				<a href="#" class="list-group-item">    Autoajuda </a>
+				<a href="#" class="list-group-item">    Biografias </a>
+				<a href="#" class="list-group-item">    Administração </a>
+				<a href="#" class="list-group-item">    Ciências Biológicas </a>
+				<a href="#" class="list-group-item">    Ciências Exatas </a>
+				<a href="#" class="list-group-item">    Ciências Sociais </a>
+				<a href="#" class="list-group-item">    Comportamento </a>
+				<a href="#" class="list-group-item">    Comunicação </a>
+				<a href="#" class="list-group-item">   Dicionários </a>
+				<a href="#" class="list-group-item">    Didáticos </a>
+				<a href="#" class="list-group-item">    Direito </a>
+				<a href="#" class="list-group-item">    Economia </a>
+				<a href="#" class="list-group-item">    Engenharia </a>
+				<a href="#" class="list-group-item">   Educação </a>
+				<a href="#" class="list-group-item">    Concursos Públicos </a>
+				<a href="#" class="list-group-item">    Ensino de Línguas </a>
+				<a href="#" class="list-group-item">    Esoterismo </a>
+				<a href="#" class="list-group-item">    Esportes e Lazer </a>
+				<a href="#" class="list-group-item">   Filosofia </a>
+				<a href="#" class="list-group-item">    Geografia </a>
+				<a href="#" class="list-group-item">    História </a>
+				<a href="#" class="list-group-item">    Gastronomia </a>
+				<a href="#" class="list-group-item">    HQs </a>
+				<a href="#" class="list-group-item">   Humor e Entretenimento </a>
+				<a href="#" class="list-group-item">    Informática e Tecnologia </a>
+				<a href="#" class="list-group-item">    LGBT </a>
+				<a href="#" class="list-group-item">    Literatura Internacional </a>
+				<a href="#" class="list-group-item">    Literatura Nacional </a>
+				<a href="#" class="list-group-item">   Medicina </a>
+				<a href="#" class="list-group-item">    Pets </a>
+				<a href="#" class="list-group-item">    Arquitetura </a>
+				<a href="#" class="list-group-item">    Psicologia </a>
+				<a href="#" class="list-group-item">    Religião </a>
+				<a href="#" class="list-group-item">      Saúde, Fitness e Beleza </a>
 			</div>
+		</div>
 
 			<div class="col-md-9">
 
