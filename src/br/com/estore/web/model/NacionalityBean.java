@@ -1,21 +1,24 @@
 package br.com.estore.web.model;
 
-public class NacionalityBean {	
-	private int ID;
-	private String Description;
-	
-	public int getID() {
-		return ID;
+public class NacionalityBean {
+
+	private Long id;
+	private String description;
+
+	public Long getId() {
+		return id;
 	}
-	public void setID(int iD) {
-		ID = iD;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
+
 	public String getDescription() {
-		return Description;
+		return description;
 	}
+
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
-	
-	
+
 }
