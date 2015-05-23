@@ -3,51 +3,51 @@ package br.com.estore.web.model;
 import java.util.Date;
 
 public class ReclamationBean {
-	
-	private int ID;
-	private String Description;
-	private Date Date;
-	private ComplainType ComplainType;
-	private String CustomerCPF;
 
-	public int getID() {
-		return ID;
+	private int id;
+	private String description;
+	private Date date;
+	private ComplainType complainType;
+	private String customerID;
+
+	public int getId() {
+		return id;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
 	public Date getDate() {
-		return Date;
+		return date;
 	}
 
 	public void setDate(Date date) {
-		Date = date;
+		this.date = date;
 	}
 
 	public ComplainType getComplainType() {
-		return ComplainType;
+		return complainType;
 	}
 
 	public void setComplainType(ComplainType complainType) {
-		ComplainType = complainType;
+		this.complainType = complainType;
 	}
 
-	public String getCustomerCPF() {
-		return CustomerCPF;
+	public String getCustomerID() {
+		return customerID;
 	}
 
-	public void setCustomerCPF(String customerCPF) {
-		CustomerCPF = customerCPF;
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
 	}
 
 }
