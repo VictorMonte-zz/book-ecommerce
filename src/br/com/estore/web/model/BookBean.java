@@ -15,7 +15,7 @@ public class BookBean {
 	private int isbn;
 	private int numerPages;
 	private String description;
-	private String imageDiretory;
+	private String imageDirectory;
 	private int likebook;
 	private int authorId;
 	private int publishingHouseId;
@@ -70,12 +70,12 @@ public class BookBean {
 		this.description = description;
 	}
 
-	public String getImageDiretory() {
-		return imageDiretory;
+	public String getImageDirectory() {
+		return imageDirectory;
 	}
 
-	public void setImageDiretory(String imageDiretory) {
-		this.imageDiretory = imageDiretory;
+	public void setImageDirectory(String imageDirectory) {
+		this.imageDirectory = imageDirectory;
 	}
 
 	public int getLikebook() {

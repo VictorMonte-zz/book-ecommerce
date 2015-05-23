@@ -41,7 +41,7 @@ public class BookDAO implements GenericDAO<BookBean> {
 				book.setIsbn(rs.getInt("ISBN"));
 				book.setNumerPages(rs.getInt("NUMBER_PAGES"));
 				book.setDescription(rs.getString("DESCRIPTION"));
-				book.setImageDiretory(rs.getString("IMAGE_DIRETORY"));
+				book.setImageDirectory(rs.getString("IMAGE_DIRETORY"));
 				book.setLikebook(rs.getInt("LIKEBOOK"));
 				book.setAuthorId(rs.getInt("ID_AUTHOR"));
 				book.setPublishingHouseId(rs.getInt("ID_PUBLISHING_HOUSE"));
@@ -81,7 +81,7 @@ public class BookDAO implements GenericDAO<BookBean> {
 			preparedStatement.setInt(3, pBook.getIsbn());
 			preparedStatement.setInt(4, pBook.getNumerPages());
 			preparedStatement.setString(5, pBook.getDescription());
-			preparedStatement.setString(6, pBook.getImageDiretory());
+			preparedStatement.setString(6, pBook.getImageDirectory());
 			preparedStatement.setInt(7, pBook.getLikebook());
 			preparedStatement.setInt(8, pBook.getAuthorId());
 			preparedStatement.setInt(9, pBook.getPublishingHouseId());
@@ -126,7 +126,7 @@ public class BookDAO implements GenericDAO<BookBean> {
 				book.setIsbn(rs.getInt("ISBN"));
 				book.setNumerPages(rs.getInt("NUMBER_PAGES"));
 				book.setDescription(rs.getString("DESCRIPTION"));
-				book.setImageDiretory(rs.getString("IMAGE_DIRETORY"));
+				book.setImageDirectory(rs.getString("IMAGE_DIRETORY"));
 				book.setLikebook(rs.getInt("LIKEBOOK"));
 				book.setAuthorId(rs.getInt("ID_AUTHOR"));
 				book.setPublishingHouseId(rs.getInt("ID_PUBLISHING_HOUSE"));
@@ -167,7 +167,7 @@ public class BookDAO implements GenericDAO<BookBean> {
 			preparedStatement.setInt(3, pBook.getIsbn());
 			preparedStatement.setInt(4, pBook.getNumerPages());
 			preparedStatement.setString(5, pBook.getDescription());
-			preparedStatement.setString(6, pBook.getImageDiretory());
+			preparedStatement.setString(6, pBook.getImageDirectory());
 			preparedStatement.setInt(7, pBook.getLikebook());
 			preparedStatement.setInt(8, pBook.getAuthorId());
 			preparedStatement.setInt(9, pBook.getPublishingHouseId());

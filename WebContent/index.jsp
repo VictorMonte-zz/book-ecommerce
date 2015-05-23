@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -87,7 +86,7 @@
 								class="caret" style="z-index: 5"></span>
 						</a>
 							<ul class="dropdown-menu" role="menu" style="z-index: 5">
-								<li><a href="Crud.html">Livros</a></li>
+								<li><a href="book?op=listar">Livros</a></li>
 								<li><a href="Crud.html">Autores</a></li>
 								<li><a href="Crud.html">Categoria</a></li>
 								<li class="divider"></li>
@@ -223,7 +222,7 @@
 							<c:forEach items="${books}" var="book">
 								<div class="col-sm-4 col-lg-4 col-md-4">
 									<div class="thumbnail">
-										<img src="img/capa/${book.imageDiretory}"
+										<img src="img/capa/${book.imageDirectory}"
 											alt="${ book.title } }">
 										<div class="caption">
 											<h4 class="pull-right">${ book.price }</h4>
