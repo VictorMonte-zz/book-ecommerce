@@ -1,89 +1,87 @@
 package br.com.estore.web.model;
 
-import java.util.Date;
-
 public class AuthorBean {
 
-	private Long id;
-	private String nome;
-	private String telefone;
-	private String cpf;
-	private GenderBean gender;
-	private String email;
-	private Date birthDate;
-	private NacionalityBean nacionality;
-	private String description;
+	private int ID;
+	private String Nome;
+	private String Telefone;
+	private String CPF;
+	private GenderBean Gender;
+	private String Email;
+	private int Age;
+	private NacionalityBean Nacionality;
+	private String Description;
 
-	public Long getId() {
-		return id;
+	public int getID() {
+		return ID;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setID(int iD) {
+		ID = iD;
 	}
 
 	public String getNome() {
-		return nome;
+		return Nome;
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		Nome = nome;
 	}
 
 	public String getTelefone() {
-		return telefone;
+		return Telefone;
 	}
 
 	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+		Telefone = telefone;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getCPF() {
+		return CPF;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setCPF(String cPF) {
+		CPF = cPF;
 	}
 
 	public GenderBean getGender() {
-		return gender;
+		return Gender;
 	}
 
 	public void setGender(GenderBean gender) {
-		this.gender = gender;
+		Gender = gender;
 	}
 
 	public String getEmail() {
-		return email;
+		return Email;
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		Email = email;
 	}
 
-	public Date getBirthDate() {
-		return birthDate;
+	public int getAge() {
+		return Age;
 	}
 
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
+	public void setAge(int age) {
+		Age = age;
 	}
 
 	public NacionalityBean getNacionality() {
-		return nacionality;
+		return Nacionality;
 	}
 
 	public void setNacionality(NacionalityBean nacionality) {
-		this.nacionality = nacionality;
+		Nacionality = nacionality;
 	}
 
 	public String getDescription() {
-		return description;
+		return Description;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		Description = description;
 	}
 
 }

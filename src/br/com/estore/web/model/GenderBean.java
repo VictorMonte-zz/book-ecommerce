@@ -1,20 +1,19 @@
 package br.com.estore.web.model;
 
 public enum GenderBean {
+	Masculino('M'),Feminino('F');
 	
-	Masculino("M"), Feminino("F");
-	
-	private String value;
+	private int value;
 
-    private GenderBean(String value) {
-        this.setValue(value);
+    private GenderBean(int value) {
+            this.setValue(value);
     }
 
-	public String getValue() {
+	public int getValue() {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public void setValue(int value) {
 		this.value = value;
 	}
 }
