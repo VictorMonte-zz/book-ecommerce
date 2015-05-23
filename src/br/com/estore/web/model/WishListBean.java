@@ -3,34 +3,34 @@ package br.com.estore.web.model;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class WishListBean {	
+public class WishListBean {
 
-	private int ID;
-	private Date Date;
-	private ArrayList<BookBean> ListOfBooks;
+	private int id;
+	private Date date;
+	private ArrayList<BookBean> listOfBooks;
 
-	public int getID() {
-		return ID;
+	public int getId() {
+		return id;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Date getDate() {
-		return Date;
+		return date;
 	}
 
 	public void setDate(Date date) {
-		Date = date;
+		this.date = date;
 	}
 
 	public ArrayList<BookBean> getListOfBooks() {
-		return ListOfBooks;
+		return listOfBooks;
 	}
 
 	public void setListOfBooks(ArrayList<BookBean> listOfBooks) {
-		ListOfBooks = listOfBooks;
+		this.listOfBooks = listOfBooks;
 	}
 
 }

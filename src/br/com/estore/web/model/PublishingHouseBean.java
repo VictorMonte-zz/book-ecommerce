@@ -1,96 +1,96 @@
 package br.com.estore.web.model;
 
 public class PublishingHouseBean {
-	
-	private int ID;
-	private String Name;
-	private String Email;
-	private String Telefone;
-	private String Contact;
-	private String CNPJ;
-	private String IE;
-	private String Site;
-	private char Type;
-	private String SocialReason;
 
-	public int getID() {
-		return ID;
+	private int id;
+	private String name;
+	private String email;
+	private String telefone;
+	private String contact;
+	private String cnpj;
+	private String ie;
+	private String site;
+	/*private char type;*/
+	private String socialReason;
+
+	public int getId() {
+		return id;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 
 	public String getTelefone() {
-		return Telefone;
+		return telefone;
 	}
 
 	public void setTelefone(String telefone) {
-		Telefone = telefone;
+		this.telefone = telefone;
 	}
 
 	public String getContact() {
-		return Contact;
+		return contact;
 	}
 
 	public void setContact(String contact) {
-		Contact = contact;
+		this.contact = contact;
 	}
 
-	public String getCNPJ() {
-		return CNPJ;
+	public String getCnpj() {
+		return cnpj;
 	}
 
-	public void setCNPJ(String cNPJ) {
-		CNPJ = cNPJ;
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
 
-	public String getIE() {
-		return IE;
+	public String getIe() {
+		return ie;
 	}
 
-	public void setIE(String iE) {
-		IE = iE;
+	public void setIe(String ie) {
+		this.ie = ie;
 	}
 
 	public String getSite() {
-		return Site;
+		return site;
 	}
 
 	public void setSite(String site) {
-		Site = site;
+		this.site = site;
 	}
 
-	public char getType() {
-		return Type;
+	/*public char getType() {
+		return type;
 	}
 
 	public void setType(char type) {
-		Type = type;
-	}
+		this.type = type;
+	}*/
 
 	public String getSocialReason() {
-		return SocialReason;
+		return socialReason;
 	}
 
 	public void setSocialReason(String socialReason) {
-		SocialReason = socialReason;
+		this.socialReason = socialReason;
 	}
 
 }

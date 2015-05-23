@@ -1,32 +1,32 @@
 package br.com.estore.web.model;
 
 public enum PaymentTypeBean {
-	
-	CartaoDebito(1, "Cartao de Debito"), CartaoCredito(1, "Cartao de Credito"), Dinheiro(
-			2, "Dinheiro");
 
-	private int ID;
-	private String Description;
+	CartaoDebito(1, "Cartao de Debito"), CartaoCredito(2, "Cartao de Credito"), Dinheiro(
+			3, "Dinheiro");
 
-	private PaymentTypeBean(int ID, String Description) {
-		this.ID = ID;
-		this.Description = Description;
+	private int id;
+	private String description;
+
+	private PaymentTypeBean(int id, String description) {
+		this.id = id;
+		this.description = description;
 	}
 
-	public int getID() {
-		return ID;
+	public int getId() {
+		return id;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
 }

@@ -112,7 +112,7 @@ public class UserDAO implements GenericDAO<UserBean> {
 			preparedStatement.setInt(13, pUser.getPersonType().getValue());
 
 			preparedStatement.executeQuery();
-			
+
 			return pUser;
 
 		} finally {
@@ -130,6 +130,7 @@ public class UserDAO implements GenericDAO<UserBean> {
 
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
+		StringBuffer like = null;
 		try {
 
 			dbConnection = ConnectionFactory.getConnection();
@@ -138,10 +139,12 @@ public class UserDAO implements GenericDAO<UserBean> {
 					+ " usuario.SEXO, usuario.TELEFONE, usuario.CEP, usuario.RUA,"
 					+ " usuario.BAIRRO, usuario.NUMERO, usuario.LOGIN, usuario.SENHA, "
 					+ "usuario.TP_ACESSO_ID_TP_ACESSO, usuario.TP_PESSOA_ID_TP FROM mydb.usuario"
-					+ " WHERE usuario.CPF_CNPJ LIKE ? || %";
+					+ " WHERE usuario.CPF_CNPJ LIKE ? ";
 
 			preparedStatement = dbConnection.prepareStatement(sql);
-			preparedStatement.setString(0, pCpfcnpj);
+			like = new StringBuffer();
+			like.append(pCpfcnpj).append("%");
+			preparedStatement.setString(1, like.toString());
 
 			ResultSet rs = preparedStatement.executeQuery();
 
@@ -308,8 +311,8 @@ public class UserDAO implements GenericDAO<UserBean> {
 		return null;
 	}
 
-	public UserBean get(String pLogin, String pPassword) throws ClassNotFoundException,
-			SQLException {
+	public UserBean get(String pLogin, String pPassword)
+			throws ClassNotFoundException, SQLException {
 
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;

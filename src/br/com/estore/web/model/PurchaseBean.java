@@ -3,69 +3,69 @@ package br.com.estore.web.model;
 import java.util.Date;
 
 public class PurchaseBean {
-	
-	private int ID;
-	private int ShoppingCartID;
-	private int CustomerID;
-	private int WishListID;
-	private Double Total;
-	private Date Date;
-	private PaymentTypeBean PaymentType;
 
-	public int getID() {
-		return ID;
+	private int id;
+	private int shoppingCartID;
+	private int customerID;
+	private int wishListID;
+	private Double total;
+	private Date date;
+	private PaymentTypeBean paymentType;
+
+	public int getId() {
+		return id;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getShoppingCartID() {
-		return ShoppingCartID;
+		return shoppingCartID;
 	}
 
 	public void setShoppingCartID(int shoppingCartID) {
-		ShoppingCartID = shoppingCartID;
+		this.shoppingCartID = shoppingCartID;
 	}
 
 	public int getCustomerID() {
-		return CustomerID;
+		return customerID;
 	}
 
 	public void setCustomerID(int customerID) {
-		CustomerID = customerID;
+		this.customerID = customerID;
 	}
 
 	public int getWishListID() {
-		return WishListID;
+		return wishListID;
 	}
 
 	public void setWishListID(int wishListID) {
-		WishListID = wishListID;
+		this.wishListID = wishListID;
 	}
 
 	public Double getTotal() {
-		return Total;
+		return total;
 	}
 
 	public void setTotal(Double total) {
-		Total = total;
+		this.total = total;
 	}
 
 	public Date getDate() {
-		return Date;
+		return date;
 	}
 
 	public void setDate(Date date) {
-		Date = date;
+		this.date = date;
 	}
 
 	public PaymentTypeBean getPaymentType() {
-		return PaymentType;
+		return paymentType;
 	}
 
 	public void setPaymentType(PaymentTypeBean paymentType) {
-		PaymentType = paymentType;
+		this.paymentType = paymentType;
 	}
 
 }
