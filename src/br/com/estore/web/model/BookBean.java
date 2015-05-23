@@ -1,28 +1,26 @@
 package br.com.estore.web.model;
 
 public class BookBean {
+
+	/*
+	 * ID_BOOK INT NOT NULL , TITLE BLOB , PRICE FLOAT , ISBN INT , NUMBER_PAGES
+	 * INT , DESCRIPTION VARCHAR (300) , IMAGE_DIRETORY VARCHAR (500) , LIKEBOOK
+	 * INT , ID_AUTHOR INT NOT NULL , ID_PUBLISHING_HOUSE INT NOT NULL ,
+	 * ID_CATEGORY INT NOT NULL
+	 */
+
 	private int id;
 	private String title;
-	private Double value;
+	private Double price;
 	private int isbn;
-	private int pageNumber;
-	private int year;
-	private String idiom;
+	private int numerPages;
 	private String description;
-	private int authorCode;
-	private int categorie;
-	private int publishingHouseCode;
-	private int genderCode;
-	private int promotionCode;
-	private int commentCode;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	private String imageDiretory;
+	private int likebook;
+	private int authorId;
+	private int publishingHouseId;
+	private int categoryId;	
+		
 
 	public String getTitle() {
 		return title;
@@ -32,12 +30,20 @@ public class BookBean {
 		this.title = title;
 	}
 
-	public Double getValue() {
-		return value;
+	public int getId() {
+		return id;
 	}
 
-	public void setValue(Double value) {
-		this.value = value;
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
 	public int getIsbn() {
@@ -48,28 +54,12 @@ public class BookBean {
 		this.isbn = isbn;
 	}
 
-	public int getPageNumber() {
-		return pageNumber;
+	public int getNumerPages() {
+		return numerPages;
 	}
 
-	public void setPageNumber(int pageNumber) {
-		this.pageNumber = pageNumber;
-	}
-
-	public int getYear() {
-		return year;
-	}
-
-	public void setYear(int year) {
-		this.year = year;
-	}
-
-	public String getIdiom() {
-		return idiom;
-	}
-
-	public void setIdiom(String idiom) {
-		this.idiom = idiom;
+	public void setNumerPages(int numerPages) {
+		this.numerPages = numerPages;
 	}
 
 	public String getDescription() {
@@ -80,52 +70,44 @@ public class BookBean {
 		this.description = description;
 	}
 
-	public int getAuthorCode() {
-		return authorCode;
+	public String getImageDiretory() {
+		return imageDiretory;
 	}
 
-	public void setAuthorCode(int authorCode) {
-		this.authorCode = authorCode;
+	public void setImageDiretory(String imageDiretory) {
+		this.imageDiretory = imageDiretory;
 	}
 
-	public int getCategorie() {
-		return categorie;
+	public int getLikebook() {
+		return likebook;
 	}
 
-	public void setCategorie(int categorie) {
-		this.categorie = categorie;
+	public void setLikebook(int likebook) {
+		this.likebook = likebook;
 	}
 
-	public int getPublishingHouseCode() {
-		return publishingHouseCode;
+	public int getAuthorId() {
+		return authorId;
 	}
 
-	public void setPublishingHouseCode(int publishingHouseCode) {
-		this.publishingHouseCode = publishingHouseCode;
+	public void setAuthorId(int authorId) {
+		this.authorId = authorId;
 	}
 
-	public int getGenderCode() {
-		return genderCode;
+	public int getPublishingHouseId() {
+		return publishingHouseId;
 	}
 
-	public void setGenderCode(int genderCode) {
-		this.genderCode = genderCode;
+	public void setPublishingHouseId(int publishingHouseId) {
+		this.publishingHouseId = publishingHouseId;
 	}
 
-	public int getPromotionCode() {
-		return promotionCode;
+	public int getCategoryId() {
+		return categoryId;
 	}
 
-	public void setPromotionCode(int promotionCode) {
-		this.promotionCode = promotionCode;
-	}
-
-	public int getCommentCode() {
-		return commentCode;
-	}
-
-	public void setCommentCode(int commentCode) {
-		this.commentCode = commentCode;
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 
 }

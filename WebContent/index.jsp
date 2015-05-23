@@ -78,22 +78,32 @@
 						<br /> <br />
 					</div></li>
 			</ul>
-			<ul class="nav navbar-nav" style="z-index: 5">
-				<li role="presentation" class="dropdown" style="z-index: 5"><a
-					class="dropdown-toggle" data-toggle="dropdown" href="#"
-					role="button" aria-expanded="false"> Cadastro <span
-						class="caret" style="z-index: 5"></span>
-				</a>
-					<ul class="dropdown-menu" role="menu" style="z-index: 5">
-						<li><a href="Crud.html">Livros</a></li>
-						<li><a href="Crud.html">Autores</a></li>
-						<li><a href="Crud.html">Categoria</a></li>
-						<li class="divider"></li>
-						<li><a href="Crud.html">Promoção</a></li>
-					</ul></li>
-				<li><a href="Carinho.html"><span
-						class="glyphicon glyphicon-shopping-cart"></span> Carinho</a></li>
-			</ul>
+			<c:choose>
+				<c:when test="${!empty user}">
+					<!-- Allow to register -->
+					<ul class="nav navbar-nav" style="z-index: 5">
+						<li role="presentation" class="dropdown" style="z-index: 5"><a
+							class="dropdown-toggle" data-toggle="dropdown" href="#"
+							role="button" aria-expanded="false"> Cadastro <span
+								class="caret" style="z-index: 5"></span>
+						</a>
+							<ul class="dropdown-menu" role="menu" style="z-index: 5">
+								<li><a href="Crud.html">Livros</a></li>
+								<li><a href="Crud.html">Autores</a></li>
+								<li><a href="Crud.html">Categoria</a></li>
+								<li class="divider"></li>
+								<li><a href="Crud.html">Promoção</a></li>
+							</ul></li>
+						<li><a href="Carinho.html"><span
+								class="glyphicon glyphicon-shopping-cart"></span> Carinho</a></li>
+					</ul>
+				</c:when>
+				<c:otherwise>
+					<!-- Deny to register -->
+				</c:otherwise>
+			</c:choose>
+
+
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
@@ -209,36 +219,53 @@
 				</div>
 
 				<div class="row">
-					<c:forEach items="${listOfBooks}" var="book">
-						<div class="col-sm-4 col-lg-4 col-md-4">
-							<div class="thumbnail">
-								<img src="img/capa/${book.Image} }" alt="${ book.Name } }">
-								<div class="caption">
-									<h4 class="pull-right">${ book.Price }</h4>
-									<h4>
-										<a href="item.html">${ book.Name }</a>
-									</h4>
-									<p>
-										See more snippets like this online store item at <a
-											target="_blank" href="http://www.bootsnipp.com">Bootsnipp
-											- http://bootsnipp.com</a>.
-									</p>
+					<c:choose>
+						<c:when test="${!empty books}">
+							<c:forEach items="${books}" var="book">
+								<div class="col-sm-4 col-lg-4 col-md-4">
+									<div class="thumbnail">
+										<img src="img/capa/${book.imageDiretory}"
+											alt="${ book.title } }">
+										<div class="caption">
+											<h4 class="pull-right">${ book.price }</h4>
+											<h4>
+												<a href="item.html">${ book.title }</a>
+											</h4>
+											<p>
+												See more snippets like this online store item at <a
+													target="_blank" href="http://www.bootsnipp.com">Bootsnipp
+													- http://bootsnipp.com</a>.
+											</p>
+										</div>
+										<div class="ratings">
+											<p class="pull-right">15 reviews</p>
+											<p>
+												<span class="glyphicon glyphicon-star"></span> <span
+													class="glyphicon glyphicon-star"></span> <span
+													class="glyphicon glyphicon-star"></span> <span
+													class="glyphicon glyphicon-star"></span> <span
+													class="glyphicon glyphicon-star"></span>
+											</p>
+										</div>
+									</div>
 								</div>
-								<div class="ratings">
-									<p class="pull-right">15 reviews</p>
-									<p>
-										<span class="glyphicon glyphicon-star"></span> <span
-											class="glyphicon glyphicon-star"></span> <span
-											class="glyphicon glyphicon-star"></span> <span
-											class="glyphicon glyphicon-star"></span> <span
-											class="glyphicon glyphicon-star"></span>
-									</p>
-								</div>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<div class="jumbotron">
+								<h1>Livros não disponíveis.</h1>
+								<p>Desculpe-nos o transtorno.</p>
+								<p>
+									<a class="btn btn-primary btn-lg" href="#" role="button">Faça
+										um reclamação</a>
+								</p>
 							</div>
-						</div>
-					</c:forEach>
+						</c:otherwise>
+					</c:choose>
 
-					<div class="col-sm-4 col-lg-4 col-md-4">
+
+
+					<!-- <div class="col-sm-4 col-lg-4 col-md-4">
 						<div class="thumbnail">
 							<img src="img/capa/the_book_of_trees.jpg" alt="">
 							<div class="caption">
@@ -359,7 +386,7 @@
 								</p>
 							</div>
 						</div>
-					</div>
+					</div> -->
 
 					<!-- <div class="col-sm-4 col-lg-4 col-md-4">
                         <h4><a href="#">Like this template?</a>
