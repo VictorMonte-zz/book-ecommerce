@@ -1,220 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Crud Livros</title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
+    <title>Crud Livros</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
 
-</head>
-<body>
-
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"
-		style="z-index: 5">
-		<div class="container" style="z-index: 5">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="index.jsp">eStore</a>
-			</div>
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li><a href="index.jsp">Livros</a></li>
-					<li><a href="#">Sobre</a></li>
-					<li><a href="#">Contato</a></li>
-				</ul>
-				<ul class="nav navbar-nav" style="z-index: 5">
-					<li class="divider-vertical" style="z-index: 5"></li>
-					<li class="dropdown" style="z-index: 5"><a
-						class="dropdown-toggle" href="#" data-toggle="dropdown">Login<strong
-							class="caret"></strong></a>
-						<div class="dropdown-menu"
-							style="padding: 20px; padding-bottom: 0px; z-index: 5">
-							<br />
-							<form method="post" action="login" accept-charset="UTF-8"
-								role="search">
-
-								<input style="margin-bottom: 15px;" type="text"
-									placeholder="Usuário" id="txtLogin" name="txtLogin"> <input
-									style="margin-bottom: 15px;" type="password"
-									placeholder="Senha" id="txtPassword" name="txtPassword">
-								<input style="float: left; margin-right: 10px;" type="checkbox"
-									name="remember-me" id="remember-me" value="1"> <label
-									class="string optional" for="user_remember_me">
-									Remember me</label> <input class="btn btn-primary" type="submit"
-									id="sign-in" value="Entra"> <input
-									class="btn btn-primary" type="submit" id="sign-in"
-									value="Cadastra">
-
-							</form>
-							<br /> <br />
-						</div></li>
-				</ul>
-				<ul class="nav navbar-nav" style="z-index: 5">
-					<li role="presentation" class="dropdown" style="z-index: 5"><a
-						class="dropdown-toggle" data-toggle="dropdown" href="#"
-						role="button" aria-expanded="false"> Cadastro <span
-							class="caret" style="z-index: 5"></span>
-					</a>
-						<ul class="dropdown-menu" role="menu" style="z-index: 5">
-							<li><a href="Crud.html">Livros</a></li>
-							<li><a href="Crud.html">Autores</a></li>
-							<li><a href="Crud.html">Categoria</a></li>
-							<li class="divider"></li>
-							<li><a href="Crud.html">Promoção</a></li>
-						</ul></li>
-					<li><a href="Carinho.html"><span
-							class="glyphicon glyphicon-shopping-cart"></span> Carinho</a></li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
-		</div>
-		<!-- /.container -->
-	</nav>
-	<p>
-		<br />
-	</p>
-	<p>
-		<br />
-	</p>
-
-	<div class="container">
-
+  </head>
+  <body>
+  
+      <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">eStore</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                	<li>
+                        <a href="#">Livros</a>
+                    </li>
+                    <li>
+                        <a href="#">Sobre nós</a>
+                    </li>                    
+                    <li>
+                        <a href="#">Contato</a>
+                    </li>                                        
+                    <li>
+                    	<!-- Login -->
+                    	<form method="post" action="login" class="navbar-form navbar-left" role="search">
+  							<div class="form-group">
+    							<input id="txtUsuario" name="txtUsuario" type="text" class="form-control" placeholder="Usuário">
+    							<input id="txtSenha" name="txtSenha" type="password" class="form-control" placeholder="Senha">
+  							</div>
+  							<button type="submit" class="btn btn-default">Logar</button>
+						</form>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>  
+	<p><br/></p>
+	<p><br/></p>
+	
+		<div class="container">		
+	
 		<form>
-			<br />
-			<div class="alert alert-success" role="alert">
-				Mensagem de item cadastrado ou editado
-				<button type="button" class="close" data-dismiss="alert"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+			<br/>
+				<div class="alert alert-success" role="alert">Mensagem de item cadastrado ou editado
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="alert alert-warning" role="alert">Mensagem de Alerta tipo campo não preeanchido
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="alert alert-danger" role="alert">Mensagem de Erro
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
+				</div>
+			<br/>
+			<br/>
+		    <div class="form-group">
+			<label for="txtNome">Tipo de Pessoa</label>
+				<label class="radio-inline"><input type="radio" name="rdTipoPessoa">Física</label>
+				<label class="radio-inline"><input type="radio" name="rdTipoPessoa">Jurídica</label>
 			</div>
-			<div class="alert alert-warning" role="alert">
-				Mensagem de Alerta tipo campo não preeanchido
-				<button type="button" class="close" data-dismiss="alert"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="alert alert-danger" role="alert">
-				Mensagem de Erro
-				<button type="button" class="close" data-dismiss="alert"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<br /> <br />
-			<div class="form-group">
-				<label for="txtNome">Tipo de Pessoa</label> <label
-					class="radio-inline"><input type="radio"
-					name="rdTipoPessoa">Física</label> <label class="radio-inline"><input
-					type="radio" name="rdTipoPessoa">Jurídica</label>
-			</div>
-
-
+			
+			
 			<!-- Pessoa Fisica-->
-			<div class="form-group">
-				<label for="txtNome">Nome</label> <input type="text"
-					class="form-control" id="txtNome" placeholder="Nome">
+		    <div class="form-group">
+				<label for="txtNome">Nome</label>
+				<input type="text" class="form-control" id="txtNome" placeholder="Nome">
 			</div>
 			<div class="form-group">
-				<label for="txtCPF">CPF</label> <input type="textarea"
-					class="form-control" id="txtCPF" placeholder="CPF">
+				<label for="txtCPF">CPF</label>
+				<input type="textarea" class="form-control" id="txtCPF" placeholder="CPF">
 			</div>
-
+		   
 			<!-- Pessoa Juridica-->
 			<div class="form-group">
-				<label for="txtRazaoSocial">Razão Social</label> <input type="text"
-					class="form-control" id="txtRazaoSocial" placeholder="Razão Social">
+				<label for="txtRazaoSocial">Razão Social</label>
+				<input type="text" class="form-control" id="txtRazaoSocial" placeholder="Razão Social">
 			</div>
 			<div class="form-group">
-				<label for="txtCPF">CNPJ</label> <input type="textarea"
-					class="form-control" id="txtCNPJ" placeholder="CNPJ">
-			</div>
-
+				<label for="txtCPF">CNPJ</label>
+				<input type="textarea" class="form-control" id="txtCNPJ" placeholder="CNPJ">
+			 </div>
+			 
 			<div class="form-group">
-				<label for="txtNome">Sexo</label> <label class="radio-inline"><input
-					type="radio" name="rdSexo">Masculino</label> <label
-					class="radio-inline"><input type="radio" name="rdSexo">Feminino</label>
-			</div>
+			<label for="txtNome">Sexo</label>
+				<label class="radio-inline"><input type="radio" name="rdSexo">Masculino</label>
+				<label class="radio-inline"><input type="radio" name="rdSexo">Feminino</label>
+			</div>  
 			<div class="form-group">
-				<label for="txtTelefone">Telefone</label> <input type="text"
-					class="form-control" id="txtTelefone" placeholder="Telefone">
-			</div>
-			<div class="form-group">
-				<label for="txtEmail">CEP</label> <input type="text"
-					class="form-control" id="txtCEP" placeholder="CEP">
+				<label for="txtTelefone">Telefone</label>
+				<input type="text" class="form-control" id="txtTelefone" placeholder="Telefone">
 			</div>
 			<div class="form-group">
-				<label for="txtEmail">Logradouro</label> <input type="text"
-					class="form-control" id="txtLogradouro" placeholder="Logradouro">
+				<label for="txtEmail">CEP</label>
+				<input type="text" class="form-control" id="txtCEP" placeholder="CEP">
 			</div>
 			<div class="form-group">
-				<label for="txtNumero">Número</label> <input type="text"
-					class="form-control" id="txtNumero" placeholder="Número">
+				<label for="txtEmail">Logradouro</label>
+				<input type="text" class="form-control" id="txtLogradouro" placeholder="Logradouro">
 			</div>
 			<div class="form-group">
-				<label for="txtBairro">Bairro</label> <input type="text"
-					class="form-control" id="txtBairro" placeholder="Bairro">
+				<label for="txtNumero">Número</label>
+				<input type="text" class="form-control" id="txtNumero" placeholder="Número">
 			</div>
 			<div class="form-group">
-				<label for="txtCidade">Cidade</label> <input type="text"
-					class="form-control" id="txtCidade" placeholder="Cidade">
+				<label for="txtBairro">Bairro</label>
+				<input type="text" class="form-control" id="txtBairro" placeholder="Bairro">
 			</div>
 			<div class="form-group">
-				<label for="txtLogin">Login</label> <input type="text"
-					class="form-control" id="txtLogin" placeholder="Login">
+				<label for="txtCidade">Cidade</label>
+				<input type="text" class="form-control" id="txtCidade" placeholder="Cidade">
 			</div>
 			<div class="form-group">
-				<label for="txtSenha">Cidade</label> <input type="text"
-					class="form-control" id="txtSenha" placeholder="Senha">
+				<label for="txtLogin">Login</label>
+				<input type="text" class="form-control" id="txtLogin" placeholder="Login">
 			</div>
-
-
-
-			<button type="button" class="btn btn-primary">Voltar</button>
-			<button type="button" class="btn btn-success">Cadastrada</button>
-		</form>
-
-
-
-
-
+			<div class="form-group">
+				<label for="txtSenha">Cidade</label>
+				<input type="text" class="form-control" id="txtSenha" placeholder="Senha">
+			</div>
+			
+			
+			  
+			  <button type="button" class="btn btn-primary">Voltar</button>
+			  <button type="button" class="btn btn-success">Cadastrada</button>
+			</form>
+	
+	
+	
+	
+		
 	</div>
+	
+	
 
+    <div class="container">
 
+        <hr>
 
-	<div class="container">
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
 
-		<hr>
+    </div>
+    <!-- /.container -->
 
-		<!-- Footer -->
-		<footer>
-			<div class="row">
-				<div class="col-lg-12">
-					<p>Copyright &copy; Your Website 2014</p>
-				</div>
-			</div>
-		</footer>
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
 
-	</div>
-	<!-- /.container -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
 
-	<!-- jQuery -->
-	<script src="js/jquery.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="js/bootstrap.min.js"></script>
-
-</body>
+  </body>
 </html>
