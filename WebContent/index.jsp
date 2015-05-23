@@ -69,8 +69,7 @@
 								id="txtPassword" name="txtPassword"> <input
 								style="float: left; margin-right: 10px;" type="checkbox"
 								name="remember-me" id="remember-me" value="1"> <label
-								class="string optional" for="user_remember_me"> Remember
-								me</label> <input class="btn btn-primary" type="submit" id="sign-in"
+								class="string optional" for="user_remember_me"> Lembre-me</label> <input class="btn btn-primary" type="submit" id="sign-in"
 								value="Entra"> <input class="btn btn-primary"
 								type="submit" id="sign-in" value="Cadastra">
 

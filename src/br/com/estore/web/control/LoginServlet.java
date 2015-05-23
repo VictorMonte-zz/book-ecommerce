@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import br.com.estore.web.dao.UserDAO;
-import br.com.estore.web.model.UserBean;
+import br.com.estore.web.dao.CustomerDAO;
+import br.com.estore.web.model.CustomerBean;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -42,31 +42,44 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	private void treatingRequest(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {		
+			HttpServletResponse response) throws Exception {
+
+		String login, password;
+		CustomerDAO dao = null;
+		CustomerBean user = null;
 		try {
-			
-			String login = request.getParameter("txtLogin");
-			String password = request.getParameter("txtPassword");
-			
-			UserDAO dao = new UserDAO();
-			
-			UserBean user = new UserBean(login,password);			
-			
-			user = dao.get(login, password);
-			
-			String url = "index.jsp";
-			
-			if(user == null){				
-				request.setAttribute("error", "Credenciais Invalidas");
+
+			if (request.getParameter("txtLogin") != null
+					&& request.getParameter("txtPassword") != null) {
+
+				login = request.getParameter("txtLogin");
+				password = request.getParameter("txtPassword");
+
+				dao = new CustomerDAO();
+				user = new CustomerBean(login, password);
+
+				user = dao.get(user);
+
+				String url = "home";
+
+				if (user == null) {
+					request.setAttribute("error", "Credenciais Invalidas");
+				} else {
+					HttpSession session = request.getSession(true);
+					session.setAttribute("user", user);
+				}
+
+				RequestDispatcher dispatcher = request
+						.getRequestDispatcher(url);
+				dispatcher.forward(request, response);
+
 			}
-			else{
-				HttpSession session = request.getSession(true);
-				session.setAttribute("user", user);
+			else
+			{
+				request.setAttribute("error", "Favor preencher todos os campos.");
 			}
-			
-			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-			dispatcher.forward(request, response);
-			
+				
+
 		} catch (Exception e) {
 			throw e;
 		}
