@@ -5,12 +5,11 @@ public class PublishingHouseBean {
 	private int id;
 	private String name;
 	private String email;
-	private String telefone;
+	private String phone;
 	private String contact;
 	private String cnpj;
 	private String ie;
 	private String site;
-	/*private char type;*/
 	private String socialReason;
 
 	public int getId() {
@@ -37,12 +36,12 @@ public class PublishingHouseBean {
 		this.email = email;
 	}
 
-	public String getTelefone() {
-		return telefone;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getContact() {
@@ -76,14 +75,6 @@ public class PublishingHouseBean {
 	public void setSite(String site) {
 		this.site = site;
 	}
-
-	/*public char getType() {
-		return type;
-	}
-
-	public void setType(char type) {
-		this.type = type;
-	}*/
 
 	public String getSocialReason() {
 		return socialReason;
