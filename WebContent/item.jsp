@@ -97,18 +97,15 @@
 									<li class="divider"></li>
 									<li><a href="Crud.html">Promoção</a></li>
 								</ul></li>
-							<li><a href="Carinho.html"><span
-									class="glyphicon glyphicon-shopping-cart"></span> Carinho</a></li>
-						</ul>
-					</c:when>
-					<c:when test="${user.is_admin == 0}">
-						<ul class="nav navbar-nav" style="z-index: 5">
-							<li><a href="Carinho.html"><span
+							<li><a href="shoppingcart?op=listar"><span
 									class="glyphicon glyphicon-shopping-cart"></span> Carinho</a></li>
 						</ul>
 					</c:when>
 					<c:otherwise>
-						<!-- Deny to register -->
+						<ul class="nav navbar-nav" style="z-index: 5">
+							<li><a href="shoppingcart?op=listar"><span
+									class="glyphicon glyphicon-shopping-cart"></span> Carinho</a></li>
+						</ul>
 					</c:otherwise>
 				</c:choose>
 
@@ -182,7 +179,7 @@
 				<div class="thumbnail">
 					<!-- <img class="img-responsive" src="http://placehold.it/800x300"
 						alt="">  -->
-					<div style="margin-left:35%;width:260px;height:365px;">
+					<div style="margin-left: 35%; width: 260px; height: 365px;">
 						<img src="img/capa/${book.imageDirectory }" alt="">
 					</div>
 					<div class="caption-full">
@@ -201,23 +198,74 @@
 									building a review system tutorial</a> </strong>over at maxoffsky.com!
 						</p> -->
 						<p>${book.description}</p>
+
+
 					</div>
 					<div class="ratings">
-						<div class="text-right">
-							<a href="Carinho.html" class="btn btn-primary"><span
-								class="glyphicon glyphicon-list-alt"></span> Adicionar a lista
-								Dejeso</a> <a href="Carinho.html" class="btn btn-success"><span
-								class="glyphicon glyphicon-shopping-cart"></span> Adicionar ao
-								Carinho</a>
 
+						<div class="text-right">
+							<form method="post"
+								action="shoppingcart?op=adicionar&id=${book.id}">
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon1">Quantidade</span>
+									<input type="number" class="form-control" placeholder="0"
+										aria-describedby="basic-addon1" id="txtQuantidade"
+										name="txtQuantidade" style="width: 150px;">
+								</div>
+								<input type="submit" value="Adicionar ao Carrinho"
+									class="btn btn-success" /> <a href="wishlist?op=cadastrar&id=${book.id}"
+									class="btn btn-primary"> Adicionar a lista Desejo </a>
+							</form>
+
+							<br /> <br /> <br />
 						</div>
-						<p>
+						<!-- <p>
 							<span class="glyphicon glyphicon-star"></span> <span
 								class="glyphicon glyphicon-star"></span> <span
 								class="glyphicon glyphicon-star"></span> <span
 								class="glyphicon glyphicon-star"></span> <span
 								class="glyphicon glyphicon-star-empty"></span> 4.0 stars
-						</p>
+						</p> -->
+
+						<c:choose>
+							<c:when test="${msg == 1}">
+								<div class="alert alert-success" role="alert">
+									Item(s) adicionado(s) no Carrinho.
+									<button type="button" class="close" data-dismiss="alert"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+							</c:when>
+							<c:when test="${msg == 3}">
+								<div class="alert alert-success" role="alert">
+									Item(s) adicionado(s) no Lista de Desejos.
+									<button type="button" class="close" data-dismiss="alert"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+							</c:when>
+							<c:when test="${msg == 2}">
+								<div class="alert alert-warning" role="alert">
+									Informar a quantidade.
+									<button type="button" class="close" data-dismiss="alert"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+							</c:when>
+							<c:when test="${msg == 4}">
+								<div class="alert alert-warning" role="alert">
+									Necessário estar logado para realizar está ação.
+									<button type="button" class="close" data-dismiss="alert"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+							</c:when>
+						</c:choose>
+
 					</div>
 				</div>
 

@@ -54,6 +54,9 @@ public class HomeServlet extends HttpServlet {
 		if (books != null) {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("books", books);
+			
+			//limpa os erros
+			session.setAttribute("error", 0);			
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);

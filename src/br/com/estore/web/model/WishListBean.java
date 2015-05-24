@@ -1,13 +1,18 @@
 package br.com.estore.web.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class WishListBean {
 
+	// ID_LIST INT NOT NULL AUTO_INCREMENT ,
+	// DATE_WISH_LIST DATE NOT NULL ,
+	// CUSTOMER_ID INT NOT NULL ,
+	// ID_BOOK INT NOT NULL ,
+
 	private int id;
 	private Date date;
-	private ArrayList<BookBean> listOfBooks;
+	private int customerID;
+	private int bookID;
 
 	public int getId() {
 		return id;
@@ -25,12 +30,20 @@ public class WishListBean {
 		this.date = date;
 	}
 
-	public ArrayList<BookBean> getListOfBooks() {
-		return listOfBooks;
+	public int getCustomerID() {
+		return customerID;
 	}
 
-	public void setListOfBooks(ArrayList<BookBean> listOfBooks) {
-		this.listOfBooks = listOfBooks;
+	public void setCustomerID(int customerID) {
+		this.customerID = customerID;
+	}
+
+	public int getBookID() {
+		return bookID;
+	}
+
+	public void setBookID(int bookID) {
+		this.bookID = bookID;
 	}
 
 }

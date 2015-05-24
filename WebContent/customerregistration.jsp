@@ -114,7 +114,7 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-				</c:when>
+				</c:when>				
 				<c:when test="${erro == 3}">
 					<div class="alert alert-danger" role="alert">
 						Mensagem de Erro

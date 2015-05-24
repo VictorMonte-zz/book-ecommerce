@@ -34,6 +34,10 @@ public class ItemServlet extends HttpServlet {
 	private void treatRequest(HttpServletRequest request,
 			HttpServletResponse response) {
 		
+		//limpando flag de item cadastrado no carrinho
+		HttpSession session = request.getSession(true);
+		session.setAttribute("msg", 0);
+		
 		BookBean book = null;
 		BookDAO dao = null;
 		String url = null;
@@ -50,9 +54,8 @@ public class ItemServlet extends HttpServlet {
 			}
 						
 			dao = new BookDAO();
-			book = dao.get(Integer.parseInt(id));
+			book = dao.get(Integer.parseInt(id));			
 			
-			HttpSession session = request.getSession(true);
 			session.setAttribute("book", book);
 			
 			url = "item.jsp";

@@ -4,13 +4,18 @@ import java.util.Date;
 
 public class PurchaseBean {
 
+	/*
+	 * PURCHASE_ID INT NOT NULL AUTO_INCREMENT , PURCHASE_DATE DATE , TOTAL
+	 * DOUBLE, ID_PROMOTION INT NOT NULL , ID_BOOK INT NOT NULL , CUSTOMER_ID
+	 * INT,
+	 */
+
 	private int id;
-	private int shoppingCartID;
-	private int customerID;
-	private int wishListID;
-	private Double total;
 	private Date date;
-	private PaymentTypeBean paymentType;
+	private Double total;
+	private int promotionID;
+	private int bookID;
+	private int customerID;
 
 	public int getId() {
 		return id;
@@ -18,38 +23,6 @@ public class PurchaseBean {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getShoppingCartID() {
-		return shoppingCartID;
-	}
-
-	public void setShoppingCartID(int shoppingCartID) {
-		this.shoppingCartID = shoppingCartID;
-	}
-
-	public int getCustomerID() {
-		return customerID;
-	}
-
-	public void setCustomerID(int customerID) {
-		this.customerID = customerID;
-	}
-
-	public int getWishListID() {
-		return wishListID;
-	}
-
-	public void setWishListID(int wishListID) {
-		this.wishListID = wishListID;
-	}
-
-	public Double getTotal() {
-		return total;
-	}
-
-	public void setTotal(Double total) {
-		this.total = total;
 	}
 
 	public Date getDate() {
@@ -60,12 +33,36 @@ public class PurchaseBean {
 		this.date = date;
 	}
 
-	public PaymentTypeBean getPaymentType() {
-		return paymentType;
+	public Double getTotal() {
+		return total;
 	}
 
-	public void setPaymentType(PaymentTypeBean paymentType) {
-		this.paymentType = paymentType;
+	public void setTotal(Double total) {
+		this.total = total;
+	}
+
+	public int getPromotionID() {
+		return promotionID;
+	}
+
+	public void setPromotionID(int promotionID) {
+		this.promotionID = promotionID;
+	}
+
+	public int getBookID() {
+		return bookID;
+	}
+
+	public void setBookID(int bookID) {
+		this.bookID = bookID;
+	}
+
+	public int getCustomerID() {
+		return customerID;
+	}
+
+	public void setCustomerID(int customerID) {
+		this.customerID = customerID;
 	}
 
 }

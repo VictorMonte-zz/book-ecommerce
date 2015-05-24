@@ -96,19 +96,16 @@
 								<li class="divider"></li>
 								<li><a href="Crud.html">Promoção</a></li>
 							</ul></li>
-						<li><a href="Carinho.html"><span
-								class="glyphicon glyphicon-shopping-cart"></span> Carinho</a></li>
-					</ul>
-				</c:when>
-				<c:when test="${user.is_admin == 0}">
-					<ul class="nav navbar-nav" style="z-index: 5">						
-						<li><a href="Carinho.html"><span
+						<li><a href="shoppingcart?op=listar"><span
 								class="glyphicon glyphicon-shopping-cart"></span> Carinho</a></li>
 					</ul>
 				</c:when>
 				<c:otherwise>
-					<!-- Deny to register -->
-				</c:otherwise>
+						<ul class="nav navbar-nav" style="z-index: 5">
+							<li><a href="shoppingcart?op=listar"><span
+									class="glyphicon glyphicon-shopping-cart"></span> Carinho</a></li>
+						</ul>
+					</c:otherwise>
 			</c:choose>
 
 
