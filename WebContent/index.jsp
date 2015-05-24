@@ -232,12 +232,12 @@
 							<c:forEach items="${books}" var="book">
 								<div class="col-sm-4 col-lg-4 col-md-4">
 									<div class="thumbnail">
-										<img src="img/capa/${book.imageDirectory}"
+										<img src="img/capa/${ book.imageDirectory }"
 											alt="${ book.title } }">
 										<div class="caption">
 											<h4 class="pull-right">R$${ book.price }</h4>
 											<h4>
-												<a href="item.html">${ book.title }</a>
+												<a href="item?id=${book.id}">${ book.title }</a>
 											</h4>
 											<p>
 												See more snippets like this online store item at <a

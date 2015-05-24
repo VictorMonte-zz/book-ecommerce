@@ -20,12 +20,12 @@ public class BookDAO implements GenericDAO<BookBean> {
 
 			dbConnection = ConnectionFactory.getConnection();
 
-			String sql = "SELECT" + "` book`.`ID_BOOK`," + "` book`.`TITLE`,"
-					+ "` book`.`PRICE`," + "` book`.`ISBN`,"
-					+ "` book`.`NUMBER_PAGES`," + "` book`.`DESCRIPTION`,"
-					+ "` book`.`IMAGE_DIRETORY`," + "` book`.`LIKEBOOK`,"
-					+ "` book`.`ID_AUTHOR`," + "` book`.`ID_PUBLISHING_HOUSE`,"
-					+ "` book`.`ID_CATEGORY`" + "FROM `mydb`.` book`;";
+			String sql = "SELECT" + " book.ID_BOOK," + " book.TITLE,"
+					+ " book.PRICE," + " book.ISBN,"
+					+ " book.NUMBER_PAGES," + " book.DESCRIPTION,"
+					+ " book.IMAGE_DIRETORY," + " book.LIKEBOOK,"
+					+ " book.ID_AUTHOR," + " book.ID_PUBLISHING_HOUSE,"
+					+ " book.ID_CATEGORY" + " FROM mydb.book;";
 
 			preparedStatement = dbConnection.prepareStatement(sql);
 
@@ -107,13 +107,13 @@ public class BookDAO implements GenericDAO<BookBean> {
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
 
-		String selectTableSQL = "SELECT" + "` book`.`ID_BOOK`,"
-				+ "` book`.`TITLE`," + "` book`.`PRICE`," + "` book`.`ISBN`,"
-				+ "` book`.`NUMBER_PAGES`," + "` book`.`DESCRIPTION`,"
-				+ "` book`.`IMAGE_DIRETORY`," + "` book`.`LIKEBOOK`,"
-				+ "` book`.`ID_AUTHOR`," + "` book`.`ID_PUBLISHING_HOUSE`,"
-				+ "` book`.`ID_CATEGORY`" + "FROM " + "`mydb`.` book`"
-				+ "WHERE " + "` book`.`ID_BOOK` = ? ";
+		String selectTableSQL = "SELECT " + " book.ID_BOOK,"
+				+ " book.TITLE," + " book.PRICE," + " book.ISBN,"
+				+ " book.NUMBER_PAGES," + " book.DESCRIPTION,"
+				+ " book.IMAGE_DIRETORY," + " book.LIKEBOOK,"
+				+ " book.ID_AUTHOR," + " book.ID_PUBLISHING_HOUSE,"
+				+ " book.ID_CATEGORY" + " FROM " + "mydb.book"
+				+ " WHERE " + " book.ID_BOOK = ? ";
 
 		try {
 			dbConnection = ConnectionFactory.getConnection();
@@ -204,7 +204,7 @@ public class BookDAO implements GenericDAO<BookBean> {
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
 
-		String sql = "DELETE FROM book" + "WHERE book.ID_BOOK = ? ";
+		String sql = "DELETE FROM book" + " WHERE book.ID_BOOK = ? ";
 
 		try {
 

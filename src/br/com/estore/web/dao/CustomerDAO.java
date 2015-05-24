@@ -26,9 +26,9 @@ public class CustomerDAO implements GenericDAO<CustomerBean> {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 
-		String sql = "INSERT INTO `mydb`.` customer`" + "( "
-				+ "`IS_ADMIN`," + "`LOGIN`," + "`PASSWORD`," + "`NAME`,"
-				+ "`EMAIL`," + "`GENDER`," + "`PHONE`," + "`ADDRESS`)"
+		String sql = "INSERT INTO mydb.customer" + "( "
+				+ "IS_ADMIN," + "LOGIN," + "PASSWORD," + "NAME,"
+				+ "EMAIL," + "GENDER," + "PHONE," + "ADDRESS)"
 				+ "VALUES" + "(" + "?," + "?," + "?," + "?," + "?,"
 				+ "?," + "?," + "?" + ");";
 
@@ -80,13 +80,13 @@ public class CustomerDAO implements GenericDAO<CustomerBean> {
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
 
-		String selectTableSQL = "SELECT" + "` customer`.`ID`,"
-				+ "` customer`.`IS_ADMIN`," + "` customer`.`LOGIN`,"
-				+ "` customer`.`PASSWORD`," + "` customer`.`NAME`,"
-				+ "` customer`.`EMAIL`," + "` customer`.`GENDER`,"
-				+ "` customer`.`PHONE`," + "` customer`.`ADDRESS`" + "FROM"
-				+ "	`mydb`.` customer`" + "WHERE" + "	` customer`.`LOGIN` = ?"
-				+ "AND" + "	` customer`.`PASSWORD` = ?;";
+		String selectTableSQL = " SELECT " + " customer.ID,"
+				+ " customer.IS_ADMIN," + " customer.LOGIN,"
+				+ " customer.PASSWORD," + " customer.NAME,"
+				+ " customer.EMAIL," + " customer.GENDER,"
+				+ " customer.PHONE," + " customer.ADDRESS" + " FROM "
+				+ "	mydb.customer" + " WHERE " + "	 customer.LOGIN = ? "
+				+ " AND " + "	 customer.PASSWORD = ?;";
 
 		try {
 			dbConnection = ConnectionFactory.getConnection();
