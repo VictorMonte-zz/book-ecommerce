@@ -33,7 +33,7 @@ public class CategoryDAO implements GenericDAO<CategoryBean> {
 
 			while (rs.next()) {
 				CategoryBean categoryBean = new CategoryBean();
-				categoryBean.setId(rs.getInt("Id"));
+				categoryBean.setId(rs.getInt("ID_CATEGORY"));
 				categoryBean.setDescription(rs.getString("Description"));
 
 				listCategory.add(categoryBean);
@@ -59,7 +59,7 @@ public class CategoryDAO implements GenericDAO<CategoryBean> {
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
 
-		String insertTableSql = "INSERT INTO CATEGORY (Description ) VALUES (?);";
+		String insertTableSql = "INSERT INTO CATEGORY (Description) VALUES (?);";
 
 		try {
 			dbConnection = ConnectionFactory.getConnection();
@@ -98,7 +98,7 @@ public class CategoryDAO implements GenericDAO<CategoryBean> {
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
 
-		String selectTableSQL = "SELECT * FROM CATEGORY WHERE ID = ?;";
+		String selectTableSQL = "SELECT * FROM CATEGORY WHERE ID_CATEGORY = ?;";
 
 		try {
 			dbConnection = ConnectionFactory.getConnection();
@@ -107,17 +107,17 @@ public class CategoryDAO implements GenericDAO<CategoryBean> {
 
 			preparedStatement.setInt(1, id);
 
-			if (preparedStatement.executeUpdate() == 1) {
-				ResultSet rs = preparedStatement.getGeneratedKeys();
-				while (rs.next()) {
-					CategoryBean categoryBean = new CategoryBean();
-					categoryBean.setId(rs.getInt("Id"));
-					categoryBean.setDescription(rs.getString("Description"));
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while (rs.next()) {
+				CategoryBean categoryBean = new CategoryBean();
+				categoryBean.setId(rs.getInt("ID_CATEGORY"));
+				categoryBean.setDescription(rs.getString("Description"));
 
-					return categoryBean;
+				return categoryBean;
 
-				}
 			}
+			
 
 		} finally {
 
@@ -141,7 +141,7 @@ public class CategoryDAO implements GenericDAO<CategoryBean> {
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
 
-		String sqlUpdateTable = "UPDATE CATEGORY SET DESCRIPTION = ? WHERE ID = ?;";
+		String sqlUpdateTable = "UPDATE CATEGORY SET DESCRIPTION = ? WHERE ID_CATEGORY = ?;";
 
 		try {
 
@@ -179,7 +179,7 @@ public class CategoryDAO implements GenericDAO<CategoryBean> {
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
 
-		String sqlDelete = "DELETE FROM CATEGORY WHERE ID =?;";
+		String sqlDelete = "DELETE FROM CATEGORY WHERE ID_CATEGORY =?;";
 
 		try {
 
