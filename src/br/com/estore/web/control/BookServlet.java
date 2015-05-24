@@ -1,22 +1,46 @@
 package br.com.estore.web.control;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+import javax.servlet.http.Part;
+
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+
 import br.com.estore.web.dao.BookDAO;
+import br.com.estore.web.dao.CustomerDAO;
 import br.com.estore.web.model.BookBean;
+import br.com.estore.web.model.CustomerBean;
 
 @WebServlet("/book")
+@MultipartConfig(fileSizeThreshold=1024*1024*10, 	// 10 MB 
+				maxFileSize=1024*1024*50,      	// 50 MB
+				maxRequestSize=1024*1024*100)   	// 100 MB
 public class BookServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
+	
+	/**
+     * Directory where uploaded files will be saved, its relative to
+     * the web application directory.
+     */
+    private static final String UPLOAD_DIR = "WebContent/img/capa";
 
 	public BookServlet() {
 		super();
@@ -34,7 +58,7 @@ public class BookServlet extends HttpServlet {
 
 	private void treatRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		
 		String op = request.getParameter("op");
 		String url = "bookmanager.jsp", id;
 		BookDAO dao = null;
@@ -44,7 +68,49 @@ public class BookServlet extends HttpServlet {
 			switch (op) {
 			case "cadastrar":
 				
+				String title = request.getParameter("txtTitle");
+				String price = request.getParameter("txtPrice");
+				String pageNumber = request.getParameter("txtPageNumber");
+				String description = request.getParameter("txtDescription");
 				
+				if (title != null
+						&& price != null
+						&& pageNumber != null
+						&& description != null
+						&& !request.getParts().isEmpty()) {
+					
+					// gets absolute path of the web application
+			        String applicationPath = request.getServletContext().getRealPath("");
+			        // constructs path of the directory to save uploaded file
+			        String uploadFilePath = applicationPath + File.separator + UPLOAD_DIR;
+			          
+			        // creates the save directory if it does not exists
+			        File fileSaveDir = new File(uploadFilePath);
+			        if (!fileSaveDir.exists()) {
+			            fileSaveDir.mkdirs();
+			        }
+			         
+			        String fileName = null;
+			        //Get all the parts from request and write it to the file on server
+			        for (Part part : request.getParts()) {
+			            fileName = extractFileName(part);
+			            part.write(uploadFilePath + File.separator + fileName);
+			        }
+			        
+			        dao = new BookDAO();
+			        
+			        book = new BookBean();
+			        book.setTitle(title);
+			        book.setPrice(Double.valueOf(price));
+			        book.setNumerPages(Integer.valueOf(pageNumber));
+			        book.setDescription(description);
+			        book.setImageDirectory(fileName);
+			        book.setAuthorId(1);
+			        book.setPublishingHouseId(1);
+			        book.setCategoryId(1);
+			        
+			        dao.save(book);
+				}
 				
 				break;
 			case "listar":
@@ -90,5 +156,19 @@ public class BookServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 
+	}
+	
+	/**
+	 * Extracts file name from HTTP header content-disposition
+	 */
+	private String extractFileName(Part part) {
+		String contentDisp = part.getHeader("content-disposition");
+		String[] items = contentDisp.split(";");
+		for (String s : items) {
+			if (s.trim().startsWith("filename")) {
+				return s.substring(s.indexOf("=") + 2, s.length()-1);
+			}
+		}
+		return "";
 	}
 }

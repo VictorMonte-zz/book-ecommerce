@@ -190,7 +190,7 @@
 
 
 				<div role="tabpanel" class="tab-pane" id="Adicionar">
-					<form method="post" action="book?op=cadastrar">
+					<form method="post" action="book?op=cadastrar" enctype="multipart/form-data">
 						<br />				
 						<!-- <div class="alert alert-success" role="alert">
 							Mensagem de item cadastrado ou editado
@@ -216,26 +216,31 @@
 						<br /> <br />
 						<div class="form-group">
 							<label for="exampleInputEmail1">Título</label> <input type="text"
-								class="form-control" id="txtTitle" placeholder="Nome">
+								class="form-control" name="txtTitle" placeholder="Nome">
 						</div>
 						
 						<div class="form-group">
 							<label for="exampleInputEmail1">Preço</label> <input type="text"
-								class="form-control" id="txtPrice" placeholder="Preço">
+								class="form-control" name="txtPrice" placeholder="Preço">
 						</div>		
 						
 						<div class="form-group">
 							<label for="exampleInputEmail1">Número de Páginas</label> <input type="number"
-								class="form-control" id="txtPageNumber" placeholder="Número de páginas">
+								class="form-control" name="txtPageNumber" placeholder="Número de páginas">
 						</div>
 						
 						<div class="form-group">
-							<label for="exampleInputEmail1">Descrição</label> <input type="text"
-								class="form-control" id="txtDescription" placeholder="Descrição">
-						</div>						
+							<label for="exampleInputEmail1">Descrição</label>
+							<input type="text" class="form-control" name="txtDescription" placeholder="Descrição">
+						</div>
+						
+						<div class="form-group">
+							<label for="exampleInputEmail1">Imagem</label>
+							<input type="file" name="file" id="file" />
+						</div>	
 						
 						<button type="button" class="btn btn-primary">Voltar</button>
-						<button type="button" class="btn btn-success">Cadastrar</button>
+						<button type="submit" class="btn btn-success">Cadastrar</button>
 					</form>
 				</div>
 			</div>
