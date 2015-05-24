@@ -94,7 +94,7 @@
 								<li><a href="Crud.html">Autores</a></li>
 								<li><a href="Crud.html">Categoria</a></li>
 								<li class="divider"></li>
-								<li><a href="Crud.html">Promoção</a></li>
+								<li><a href="category?op=listar">Promoção</a></li>
 							</ul></li>
 						<li><a href="shoppingcart?op=listar"><span
 								class="glyphicon glyphicon-shopping-cart"></span> Carinho</a></li>

@@ -57,6 +57,7 @@ public class CategoryServlet extends HttpServlet {
 		CategoryBean category = null;
 		
 		session.setAttribute("MensagemErro", "");
+		session.setAttribute("TabAddEdit", "");
 
 		try {
 
@@ -64,6 +65,7 @@ public class CategoryServlet extends HttpServlet {
 
 			case "cadastra":
 				
+				session.setAttribute("TabAddEdit", "S");
 				session.setAttribute("Mensagem", "");
 				session.setAttribute("category", "");
 				break;
@@ -111,6 +113,7 @@ public class CategoryServlet extends HttpServlet {
 				break;
 			case "editar":
 			
+				session.setAttribute("TabAddEdit", "S");
 				category = new CategoryBean();
 				dao = new CategoryDAO();
 

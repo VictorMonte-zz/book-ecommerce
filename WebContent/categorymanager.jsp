@@ -24,16 +24,33 @@
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist">
 
-				<li role="presentation"><a href="#Lista" aria-controls="home"
+				<li role="presentation"
+						<c:if test="${empty TabAddEdit}">						 
+									class="active"
+						</c:if>						
+				><a href="#Lista" aria-controls="home"
 					role="tab" data-toggle="tab">Lista</a></li>
 
-				<li role="presentation"><a href="#Adicionar"
+				<li role="presentation"
+				<c:if test="${!empty TabAddEdit}">						 
+									class="active"
+						</c:if>
+				
+				><a href="#Adicionar"
 					aria-controls="profile" role="tab" data-toggle="tab">Adicionar/Editar</a></li>
 			</ul>
 
 			<!-- Tab panes -->
 			<div class="tab-content">
-				<div role="tabpanel" class="tab-pane active" id="Lista">
+				<div role="tabpanel" id="Lista"
+						<c:if test="${empty TabAddEdit}">						 
+									class="tab-pane active"
+						</c:if>
+						<c:if test="${!empty TabAddEdit}">						 
+									class="tab-pane"
+						</c:if>
+				
+				>
 
 					<br />
 					<p>
@@ -119,7 +136,14 @@
 				</div>
 
 
-				<div role="tabpanel" class="tab-pane" id="Adicionar">
+				<div role="tabpanel"  id="Adicionar"
+						<c:if test="${!empty TabAddEdit}">						 
+									class="tab-pane active"
+						</c:if>
+						<c:if test="${empty TabAddEdit}">						 
+									class="tab-pane"
+						</c:if>
+						>
 					<form method="post" action="category?op=confirmar">
 						<br /> <br /> <br />
 						<div class="form-group">
