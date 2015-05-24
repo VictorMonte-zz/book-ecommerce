@@ -47,7 +47,8 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="index.jsp">Livros</a></li>
+				<li><a href="index.jsp"><span
+								class="glyphicon glyphicon-book"></span> Livros</a></li>
 				<li><a href="#">Sobre</a></li>
 				<li><a href="#">Contato</a></li>
 			</ul>
@@ -65,10 +66,13 @@
 							<input style="margin-bottom: 15px;" type="text"
 								placeholder="Usuário" id="txtLogin" name="txtLogin"> <input
 								style="margin-bottom: 15px;" type="password" placeholder="Senha"
-								id="txtPassword" name="txtPassword"> <input
+								id="txtPassword" name="txtPassword"> <!-- <input
 								style="float: left; margin-right: 10px;" type="checkbox"
-								name="remember-me" id="remember-me" value="1"> <label
-								class="string optional" for="user_remember_me"> Lembre-me</label> <input class="btn btn-primary" type="submit" id="sign-in"
+								name="remember-me" id="remember-me" value="1"> -->
+							<!-- <label
+								class="string optional" for="user_remember_me">
+								Lembre-me</label> -->
+							<input class="btn btn-primary" type="submit" id="sign-in"
 								value="Entra"> <input class="btn btn-primary"
 								type="submit" id="sign-in" value="Cadastra">
 
@@ -77,7 +81,7 @@
 					</div></li>
 			</ul>
 			<c:choose>
-				<c:when test="${!empty user}">
+				<c:when test="${user.is_admin == 1}">
 					<!-- Allow to register -->
 					<ul class="nav navbar-nav" style="z-index: 5">
 						<li role="presentation" class="dropdown" style="z-index: 5"><a
@@ -225,7 +229,7 @@
 										<img src="img/capa/${book.imageDirectory}"
 											alt="${ book.title } }">
 										<div class="caption">
-											<h4 class="pull-right">${ book.price }</h4>
+											<h4 class="pull-right">R$${ book.price }</h4>
 											<h4>
 												<a href="item.html">${ book.title }</a>
 											</h4>

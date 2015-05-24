@@ -33,14 +33,20 @@ public class BookServlet extends HttpServlet {
 	}
 
 	private void treatRequest(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws ServletException, IOException {
 
 		String op = request.getParameter("op");
+		String url = "bookmanager.jsp", id;
 		BookDAO dao = null;
-		String url = "bookmanager.jsp";
+		BookBean book = null;
 
 		try {
 			switch (op) {
+			case "cadastrar":
+				
+				
+				
+				break;
 			case "listar":
 
 				dao = new BookDAO();
@@ -51,15 +57,37 @@ public class BookServlet extends HttpServlet {
 
 				session.setAttribute("books", books);
 
-				RequestDispatcher dispatcher = request
-						.getRequestDispatcher(url);
-				dispatcher.forward(request, response);
+				break;
+			case "editar":
+
+				book = new BookBean();
+				dao = new BookDAO();
+
+				id = request.getParameter("id");
+				book = dao.get(Integer.parseInt(id));
+
+				// em andamento
 
 				break;
+			case "deletar":
+
+				book = new BookBean();
+				dao = new BookDAO();
+
+				id = request.getParameter("id");
+				book.setId(Integer.parseInt(id));
+				dao.delete(book);
+
+				url = "book?op=listar";
+
 			default:
 				break;
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+			dispatcher.forward(request, response);
 		}
 
 	}

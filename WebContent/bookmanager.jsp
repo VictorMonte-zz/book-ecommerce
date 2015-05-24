@@ -134,17 +134,7 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody>
-								<!-- <tr>
-									<td>98745</td>
-									<td>Naruto</td>
-									<td>Desenho de Viado</td>
-									<td>10,00</td>
-									<td>10/10/2015</td>
-									<td><a href=""><span class="glyphicon glyphicon-edit"></span>
-											Editar <a href=""><span class="glyphicon glyphicon-trash"></span>
-												Excluir </td>
-								</tr> -->
+							<tbody>								
 								<c:choose>
 									<c:when test="${!empty books}">
 
@@ -159,9 +149,12 @@
 												<td>${book.authorId}</td>
 												<td>${book.publishingHouseId}</td>
 												<td>${book.categoryId}</td>
-												<td><a href=""> <span
-														class="glyphicon glyphicon-edit"></span> Editar <a href=""><span
-															class="glyphicon glyphicon-trash"></span> Excluir</a></td>
+												<td style="white-space: nowrap; ">
+													<a href="book?op=editar&id=${book.id}"> <span class="glyphicon glyphicon-edit"></span> Editar</a>
+												</td>
+												<td style="white-space: nowrap; ">
+													<a href="book?op=deletar&id=${book.id}"> <span class="glyphicon glyphicon-trash"></span> Excluir</a>
+												</td>
 											</tr>
 										</c:forEach>
 									</c:when>
@@ -197,9 +190,9 @@
 
 
 				<div role="tabpanel" class="tab-pane" id="Adicionar">
-					<form>
-						<br />
-						<div class="alert alert-success" role="alert">
+					<form method="post" action="book?op=cadastrar">
+						<br />				
+						<!-- <div class="alert alert-success" role="alert">
 							Mensagem de item cadastrado ou editado
 							<button type="button" class="close" data-dismiss="alert"
 								aria-label="Close">
@@ -219,32 +212,30 @@
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
-						</div>
+						</div> -->
 						<br /> <br />
 						<div class="form-group">
-							<label for="exampleInputEmail1">Nome</label> <input type="text"
-								class="form-control" id="txtNome" placeholder="Nome">
+							<label for="exampleInputEmail1">Título</label> <input type="text"
+								class="form-control" id="txtTitle" placeholder="Nome">
 						</div>
+						
 						<div class="form-group">
-							<label for="exampleInputEmail1">Descrição</label> <input
-								type="textarea" class="form-control" id="txtNome"
-								placeholder="Descrição">
-						</div>
+							<label for="exampleInputEmail1">Preço</label> <input type="text"
+								class="form-control" id="txtPrice" placeholder="Preço">
+						</div>		
+						
 						<div class="form-group">
-							<label for="exampleInputEmail1">Valor</label> <input type="text"
-								class="form-control" id="txtNome" placeholder="valor">
+							<label for="exampleInputEmail1">Número de Páginas</label> <input type="number"
+								class="form-control" id="txtPageNumber" placeholder="Número de páginas">
 						</div>
+						
 						<div class="form-group">
-							<label for="exampleInputEmail1">Data</label> <input type="text"
-								class="form-control" id="txtNome" placeholder="Data">
-						</div>
-						<div class="form-group">
-							<label for="exampleInputEmail1">Nome</label> <input type="text"
-								class="form-control" id="txtNome" placeholder="Nome">
-						</div>
-
+							<label for="exampleInputEmail1">Descrição</label> <input type="text"
+								class="form-control" id="txtDescription" placeholder="Descrição">
+						</div>						
+						
 						<button type="button" class="btn btn-primary">Voltar</button>
-						<button type="button" class="btn btn-success">Cadastrada</button>
+						<button type="button" class="btn btn-success">Cadastrar</button>
 					</form>
 				</div>
 			</div>
