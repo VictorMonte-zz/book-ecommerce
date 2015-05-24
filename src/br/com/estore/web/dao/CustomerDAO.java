@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import br.com.estore.web.factory.ConnectionFactory;
@@ -19,10 +20,52 @@ public class CustomerDAO implements GenericDAO<CustomerBean> {
 	}
 
 	@Override
-	public CustomerBean save(CustomerBean object)
+	public CustomerBean save(CustomerBean pCustomer)
 			throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		String sql = "INSERT INTO `mydb`.` customer`" + "( "
+				+ "`IS_ADMIN`," + "`LOGIN`," + "`PASSWORD`," + "`NAME`,"
+				+ "`EMAIL`," + "`GENDER`," + "`PHONE`," + "`ADDRESS`)"
+				+ "VALUES" + "(" + "?," + "?," + "?," + "?," + "?,"
+				+ "?," + "?," + "?" + ");";
+
+		try {
+
+			dbConnection = ConnectionFactory.getConnection();
+
+			preparedStatement = dbConnection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+
+			preparedStatement.setInt(1, 0);
+			preparedStatement.setString(2, pCustomer.getLogin());
+			preparedStatement.setString(3, pCustomer.getPassword());
+			preparedStatement.setString(4, pCustomer.getName());
+			preparedStatement.setString(5, pCustomer.getEmail());
+			preparedStatement.setString(6, pCustomer.getGender());
+			preparedStatement.setString(7, pCustomer.getPhone());
+			preparedStatement.setString(8, pCustomer.getAddress());
+
+			if (preparedStatement.executeUpdate() == 1) {
+				// execute insert SQL stetement
+				resultSet = preparedStatement.getGeneratedKeys();
+                if(resultSet.next())
+                {
+                	pCustomer.setId(resultSet.getInt(1));
+                }
+				return pCustomer;
+			}
+		} finally {
+			if (preparedStatement != null) {
+				preparedStatement.close();
+			}
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+		}
 		return null;
+
 	}
 
 	@Override

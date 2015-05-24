@@ -48,7 +48,7 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="index.jsp"><span
-								class="glyphicon glyphicon-book"></span> Livros</a></li>
+						class="glyphicon glyphicon-book"></span> Livros</a></li>
 				<li><a href="#">Sobre</a></li>
 				<li><a href="#">Contato</a></li>
 			</ul>
@@ -66,18 +66,18 @@
 							<input style="margin-bottom: 15px;" type="text"
 								placeholder="Usuário" id="txtLogin" name="txtLogin"> <input
 								style="margin-bottom: 15px;" type="password" placeholder="Senha"
-								id="txtPassword" name="txtPassword"> <!-- <input
+								id="txtPassword" name="txtPassword">
+							<!-- <input
 								style="float: left; margin-right: 10px;" type="checkbox"
 								name="remember-me" id="remember-me" value="1"> -->
 							<!-- <label
 								class="string optional" for="user_remember_me">
 								Lembre-me</label> -->
 							<input class="btn btn-primary" type="submit" id="sign-in"
-								value="Entra"> <input class="btn btn-primary"
-								type="submit" id="sign-in" value="Cadastra">
-
+								value="Entra">
 						</form>
-						<br /> <br />
+						<br />
+						<a href="customerregistration.jsp">Cadastrar-me</a> <br /> <br />
 					</div></li>
 			</ul>
 			<c:choose>
@@ -96,6 +96,12 @@
 								<li class="divider"></li>
 								<li><a href="Crud.html">Promoção</a></li>
 							</ul></li>
+						<li><a href="Carinho.html"><span
+								class="glyphicon glyphicon-shopping-cart"></span> Carinho</a></li>
+					</ul>
+				</c:when>
+				<c:when test="${user.is_admin == 0}">
+					<ul class="nav navbar-nav" style="z-index: 5">						
 						<li><a href="Carinho.html"><span
 								class="glyphicon glyphicon-shopping-cart"></span> Carinho</a></li>
 					</ul>
