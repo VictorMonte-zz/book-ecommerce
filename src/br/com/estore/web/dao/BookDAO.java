@@ -67,8 +67,8 @@ public class BookDAO implements GenericDAO<BookBean> {
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
 
-		String sql = "INSERT INTO book ( TITLE, PRICE, ISBN, NUMBER_PAGES, DESCRIPTION, IMAGE_DIRETORY, LIKEBOOK, ID_AUTHOR, ID_PUBLISHING_HOUSE,"
-				+ " ID_CATEGORY) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? );";
+		String sql = "INSERT INTO book (TITLE, PRICE, ISBN, NUMBER_PAGES, DESCRIPTION, IMAGE_DIRETORY, LIKEBOOK, ID_AUTHOR, ID_PUBLISHING_HOUSE,"
+				+ " ID_CATEGORY) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 		try {
 
@@ -87,7 +87,7 @@ public class BookDAO implements GenericDAO<BookBean> {
 			preparedStatement.setInt(9, pBook.getPublishingHouseId());
 			preparedStatement.setInt(10, pBook.getCategoryId());
 
-			preparedStatement.executeQuery();
+			preparedStatement.executeUpdate();
 
 			return pBook;
 

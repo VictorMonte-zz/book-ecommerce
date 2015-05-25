@@ -216,22 +216,22 @@
 						<br /> <br />
 						<div class="form-group">
 							<label for="exampleInputEmail1">Título</label> <input type="text"
-								class="form-control" name="txtTitle" placeholder="Nome">
+								class="form-control" id="txtTitle" name="txtTitle" placeholder="Nome">
 						</div>
 						
 						<div class="form-group">
 							<label for="exampleInputEmail1">Preço</label> <input type="text"
-								class="form-control" name="txtPrice" placeholder="Preço">
+								class="form-control" id="txtPrice" name="txtPrice" placeholder="Preço">
 						</div>		
 						
 						<div class="form-group">
 							<label for="exampleInputEmail1">Número de Páginas</label> <input type="number"
-								class="form-control" name="txtPageNumber" placeholder="Número de páginas">
+								class="form-control" id="txtPageNumber" name="txtPageNumber" placeholder="Número de páginas">
 						</div>
 						
 						<div class="form-group">
 							<label for="exampleInputEmail1">Descrição</label>
-							<input type="text" class="form-control" name="txtDescription" placeholder="Descrição">
+							<input type="text" class="form-control" id="txtDescription" name="txtDescription" placeholder="Descrição">
 						</div>
 						
 						<div class="form-group">

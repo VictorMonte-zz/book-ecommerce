@@ -29,9 +29,9 @@ import br.com.estore.web.model.BookBean;
 import br.com.estore.web.model.CustomerBean;
 
 @WebServlet("/book")
-@MultipartConfig(fileSizeThreshold=1024*1024*10, 	// 10 MB 
-				maxFileSize=1024*1024*50,      	// 50 MB
-				maxRequestSize=1024*1024*100)   	// 100 MB
+@MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB
+				maxFileSize=1024*1024*10,      // 10MB
+				maxRequestSize=1024*1024*50)   // 50MB
 public class BookServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -59,6 +59,8 @@ public class BookServlet extends HttpServlet {
 	private void treatRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
+		response.setContentType("text/html;charset=UTF-8");
+		
 		String op = request.getParameter("op");
 		String url = "bookmanager.jsp", id;
 		BookDAO dao = null;
@@ -72,6 +74,7 @@ public class BookServlet extends HttpServlet {
 				String price = request.getParameter("txtPrice");
 				String pageNumber = request.getParameter("txtPageNumber");
 				String description = request.getParameter("txtDescription");
+				Part part = request.getPart("file");
 				
 				if (title != null
 						&& price != null
@@ -91,11 +94,19 @@ public class BookServlet extends HttpServlet {
 			        }
 			         
 			        String fileName = null;
+			        
+			        fileName = getFileName(part);
+		            part.write(uploadFilePath + File.separator + fileName);
+			        
 			        //Get all the parts from request and write it to the file on server
+		            /*
 			        for (Part part : request.getParts()) {
-			            fileName = extractFileName(part);
-			            part.write(uploadFilePath + File.separator + fileName);
+			        	if(part.getSize() > 0){
+			        		fileName = getFileName(part);
+				            part.write(uploadFilePath + File.separator + fileName);
+			        	}
 			        }
+			        */
 			        
 			        dao = new BookDAO();
 			        
@@ -159,16 +170,17 @@ public class BookServlet extends HttpServlet {
 	}
 	
 	/**
-	 * Extracts file name from HTTP header content-disposition
-	 */
-	private String extractFileName(Part part) {
-		String contentDisp = part.getHeader("content-disposition");
-		String[] items = contentDisp.split(";");
-		for (String s : items) {
-			if (s.trim().startsWith("filename")) {
-				return s.substring(s.indexOf("=") + 2, s.length()-1);
-			}
-		}
-		return "";
-	}
+     * Utility method to get file name from HTTP header content-disposition
+     */
+    private String getFileName(Part part) {
+        String contentDisp = part.getHeader("content-disposition");
+        System.out.println("content-disposition header= "+contentDisp);
+        String[] tokens = contentDisp.split(";");
+        for (String token : tokens) {
+            if (token.trim().startsWith("filename")) {
+                return token.substring(token.indexOf("=") + 2, token.length()-1);
+            }
+        }
+        return "";
+    }
 }
