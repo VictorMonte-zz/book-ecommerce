@@ -21,8 +21,7 @@ public class PublishingHouseDAO implements GenericDAO<PublishingHouseBean> {
 
 			dbConnection = ConnectionFactory.getConnection();
 
-			String sql = "SELECT editora.ID_EDITORA, editora.NOME, editora.E-MAIL, editora.TELEFONE, editora.CONTATO,"
-					+ " editora.CNPJ, editora.IE, editora.SITE, editora.RAZÃO SOCIAL FROM mydb.editora";
+			String sql = "SELECT * FROM mydb.publishing_house;";
 
 			preparedStatement = dbConnection.prepareStatement(sql);
 
@@ -33,16 +32,17 @@ public class PublishingHouseDAO implements GenericDAO<PublishingHouseBean> {
 			while (rs.next()) {
 
 				PublishingHouseBean PublishingHouse = new PublishingHouseBean();
-				PublishingHouse.setId(rs.getInt("ID_EDITORA"));
-				PublishingHouse.setName(rs.getString("NOME"));
-				PublishingHouse.setEmail(rs.getString("E-MAIL"));
-				PublishingHouse.setPhone(rs.getString("TELEFONE"));
-				PublishingHouse.setContact(rs.getString("CONTATO"));
+				PublishingHouse.setId(rs.getInt("ID_PUBLISHING_HOUSE"));
+				PublishingHouse.setName(rs.getString("NAME"));
+				PublishingHouse.setCompanyName(rs.getString("COMPANY_NAME"));
+				PublishingHouse.setEmail(rs.getString("EMAIL"));
 				PublishingHouse.setCnpj(rs.getString("CNPJ"));
 				PublishingHouse.setIe(rs.getString("IE"));
 				PublishingHouse.setSite(rs.getString("SITE"));
-				PublishingHouse.setSocialReason(rs.getString("RAZÃO SOCIAL"));
-
+				PublishingHouse.setPhone(rs.getString("PHONE"));
+				PublishingHouse.setAddress(rs.getString("ADDRESS"));
+				PublishingHouse.setHead(rs.getString("head"));
+	
 				listOfPublishingHouses.add(PublishingHouse);
 			}
 
@@ -68,18 +68,19 @@ public class PublishingHouseDAO implements GenericDAO<PublishingHouseBean> {
 
 			dbConnection = ConnectionFactory.getConnection();
 
-			String sql = "INSERT INTO mydb.editora (NOME, E-MAIL, TELEFONE, CONTATO, CNPJ, IE, SITE, "
-					+ " RAZÃO SOCIAL) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			String sql = "INSERT INTO mydb.editora (NAME, COMPANY_NAME, EMAIL, CNPJ, IE, SITE, PHONE, "
+					+ " ADDRESS, head) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 			preparedStatement = dbConnection.prepareStatement(sql);
 			preparedStatement.setString(1, pPublishingHouse.getName());
-			preparedStatement.setString(2, pPublishingHouse.getEmail());
-			preparedStatement.setString(3, pPublishingHouse.getPhone());
-			preparedStatement.setString(3, pPublishingHouse.getContact());
+			preparedStatement.setString(2, pPublishingHouse.getCompanyName());
+			preparedStatement.setString(3, pPublishingHouse.getEmail());
 			preparedStatement.setString(4, pPublishingHouse.getCnpj());
 			preparedStatement.setString(5, pPublishingHouse.getIe());
 			preparedStatement.setString(6, pPublishingHouse.getSite());
-			preparedStatement.setString(7, pPublishingHouse.getSocialReason());
+			preparedStatement.setString(7, pPublishingHouse.getPhone());
+			preparedStatement.setString(8, pPublishingHouse.getAddress());
+			preparedStatement.setString(9, pPublishingHouse.getHead());
 
 			preparedStatement.executeQuery();
 
@@ -104,28 +105,28 @@ public class PublishingHouseDAO implements GenericDAO<PublishingHouseBean> {
 
 			dbConnection = ConnectionFactory.getConnection();
 
-			String sql = "SELECT editora.ID_EDITORA, editora.NOME, editora.E-MAIL, editora.TELEFONE, editora.CONTATO,"
-					+ " editora.CNPJ, editora.IE, editora.SITE, editora.RAZÃO SOCIAL FROM mydb.editora WHERE "
-					+ " editora.ID_EDITORA = ?";
+			String sql = "SELECT * FROM mydb.publishing_house WHERE ID_PUBLISHING_HOUSE = ?;";
 
 			preparedStatement = dbConnection.prepareStatement(sql);
 			preparedStatement.setInt(1, pID);
 
 			ResultSet rs = preparedStatement.executeQuery();
 
-			PublishingHouseBean PublishingHouse = null;
+			PublishingHouseBean PublishingHouse = new PublishingHouseBean();
+			
 			if (rs.next()) {
-
-				PublishingHouse = new PublishingHouseBean();
-				PublishingHouse.setId(rs.getInt("ID_EDITORA"));
-				PublishingHouse.setName(rs.getString("NOME"));
-				PublishingHouse.setEmail(rs.getString("E-MAIL"));
-				PublishingHouse.setPhone(rs.getString("TELEFONE"));
-				PublishingHouse.setContact(rs.getString("CONTATO"));
+				
+				
+				PublishingHouse.setId(rs.getInt("ID_PUBLISHING_HOUSE"));
+				PublishingHouse.setName(rs.getString("NAME"));
+				PublishingHouse.setCompanyName(rs.getString("COMPANY_NAME"));
+				PublishingHouse.setEmail(rs.getString("EMAIL"));
 				PublishingHouse.setCnpj(rs.getString("CNPJ"));
 				PublishingHouse.setIe(rs.getString("IE"));
 				PublishingHouse.setSite(rs.getString("SITE"));
-				PublishingHouse.setSocialReason(rs.getString("RAZÃO SOCIAL"));
+				PublishingHouse.setPhone(rs.getString("PHONE"));
+				PublishingHouse.setAddress(rs.getString("ADDRESS"));
+				PublishingHouse.setHead(rs.getString("head"));
 			}
 
 			return PublishingHouse;
@@ -149,18 +150,29 @@ public class PublishingHouseDAO implements GenericDAO<PublishingHouseBean> {
 
 			dbConnection = ConnectionFactory.getConnection();
 
-			String sql = "UPDATE mydb.editora SET NOME = ?, E-MAIL = ?, TELEFONE = ?, CONTATO = ?, CNPJ = ?, IE = ?, SITE = ?, RAZÃO SOCIAL = ? WHERE ID_EDITORA = ?";
+			String sql = "UPDATE `mydb`.`publishing_house` SET"+
+							 "NAME =?, "+
+							 "COMPANY_NAME = ?,"+ 
+							 "EMAIL = ?, "+
+							 "CNPJ = ?, "+
+							 "IE = ?, "+
+							 "SITE = ?," +
+							 "PHONE = ?, "+
+							 "ADDRESS = ?,"+ 
+							 "head = ?"+
+						"WHERE ID_PUBLISHING_HOUSE = ?";
 
 			preparedStatement = dbConnection.prepareStatement(sql);
 			preparedStatement.setString(1, pPublishingHouse.getName());
-			preparedStatement.setString(2, pPublishingHouse.getEmail());
-			preparedStatement.setString(3, pPublishingHouse.getPhone());
-			preparedStatement.setString(3, pPublishingHouse.getContact());
+			preparedStatement.setString(2, pPublishingHouse.getCompanyName());
+			preparedStatement.setString(3, pPublishingHouse.getEmail());
 			preparedStatement.setString(4, pPublishingHouse.getCnpj());
 			preparedStatement.setString(5, pPublishingHouse.getIe());
 			preparedStatement.setString(6, pPublishingHouse.getSite());
-			preparedStatement.setString(7, pPublishingHouse.getSocialReason());
-			preparedStatement.setInt(8, pPublishingHouse.getId());
+			preparedStatement.setString(7, pPublishingHouse.getPhone());
+			preparedStatement.setString(8, pPublishingHouse.getAddress());
+			preparedStatement.setString(9, pPublishingHouse.getHead());
+			preparedStatement.setInt(10, pPublishingHouse.getId());
 			
 
 			ResultSet rs = preparedStatement.executeQuery();
@@ -190,8 +202,8 @@ public class PublishingHouseDAO implements GenericDAO<PublishingHouseBean> {
 
 			dbConnection = ConnectionFactory.getConnection();
 
-			String sql = "DELETE FROM mydb.editora"
-					+ "WHERE editora.ID_EDITORA = ? ";
+			String sql = "DELETE FROM `mydb`.`publishing_house`"
+					+ "WHERE ID_PUBLISHING_HOUSE = ?";
 
 			preparedStatement = dbConnection.prepareStatement(sql);
 			preparedStatement.setInt(1, pPublishingHouse.getId());
@@ -222,7 +234,7 @@ public class PublishingHouseDAO implements GenericDAO<PublishingHouseBean> {
 
 			dbConnection = ConnectionFactory.getConnection();
 
-			String sql = "DELETE FROM mydb.editora";
+			String sql = "DELETE FROM `mydb`.`publishing_house`";
 
 			preparedStatement = dbConnection.prepareStatement(sql);
 

@@ -4,13 +4,22 @@ public class PublishingHouseBean {
 
 	private int id;
 	private String name;
+	private String companyName;
 	private String email;
-	private String phone;
-	private String contact;
 	private String cnpj;
 	private String ie;
 	private String site;
-	private String socialReason;
+	private String phone;
+	private String address;
+	private String head;
+
+	public String getHead() {
+		return head;
+	}
+
+	public void setHead(String head) {
+		this.head = head;
+	}
 
 	public int getId() {
 		return id;
@@ -44,13 +53,7 @@ public class PublishingHouseBean {
 		this.phone = phone;
 	}
 
-	public String getContact() {
-		return contact;
-	}
 
-	public void setContact(String contact) {
-		this.contact = contact;
-	}
 
 	public String getCnpj() {
 		return cnpj;
@@ -76,12 +79,20 @@ public class PublishingHouseBean {
 		this.site = site;
 	}
 
-	public String getSocialReason() {
-		return socialReason;
+	public String getCompanyName() {
+		return companyName;
 	}
 
-	public void setSocialReason(String socialReason) {
-		this.socialReason = socialReason;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}	
 
 }
