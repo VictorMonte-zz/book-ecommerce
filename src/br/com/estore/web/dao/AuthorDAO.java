@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import br.com.estore.web.factory.ConnectionFactory;
@@ -24,7 +23,7 @@ public class AuthorDAO implements GenericDAO<AuthorBean> {
 		Connection dbConnection = null;
 		Statement statement = null;
 
-		String selectTableSQL = "SELECT * FROM ALGO;";
+		String selectTableSQL = "SELECT * FROM AUTHOR;";
 
 		try {
 			dbConnection = ConnectionFactory.getConnection();
@@ -34,23 +33,16 @@ public class AuthorDAO implements GenericDAO<AuthorBean> {
 			ResultSet rs = statement.executeQuery(selectTableSQL);
 			while (rs.next()) {
 				AuthorBean authorBean = new AuthorBean();
-				authorBean.setId(rs.getLong(""));
-				authorBean.setNome(rs.getString(""));
-				authorBean.setTelefone(rs.getString(""));
-				authorBean.setCpf(rs.getString(""));
-				
-				if(rs.getString("").equalsIgnoreCase("M")){
-					authorBean.setGender(GenderBean.Masculino);
-				} else if(rs.getString("").equalsIgnoreCase("F")){
-					authorBean.setGender(GenderBean.Feminino);
-				}
-				
-				authorBean.setEmail(rs.getString(""));
-				authorBean.setBirthDate(new Date(rs.getTimestamp("").getTime()));
-				
-				//authorBean.setNacionality(rs.getString(""));
-				
-				authorBean.setDescription(rs.getString(""));
+				authorBean.setId(rs.getInt("ID_AUTHOR"));
+				authorBean.setName(rs.getString("NAME"));
+				authorBean.setLastName(rs.getString("LAST_NAME"));
+				authorBean.setEmail(rs.getString("EMAIL"));
+				authorBean.setPhone(rs.getString("PHONE"));
+				authorBean.setNacionality(rs.getString("NATIONALITY"));
+				authorBean.setBirthDate(new Timestamp(rs.getTimestamp("DATA_BIRTH").getTime()));
+				authorBean.setGender(rs.getString("GENDER"));
+				authorBean.setAddress(rs.getString("ADDRESS"));			
+				authorBean.setSpouse(rs.getString("SPOUSE"));
 
 				listComment.add(authorBean);
 			}
@@ -73,30 +65,30 @@ public class AuthorDAO implements GenericDAO<AuthorBean> {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 
-		String insertTableSQL = "INSERT INTO INTEGRANTE"
-				+ "(NOME, MATRICULA, ID_EQUIPE) VALUES" 
-				+ "(?, ?, ?);";
+		String insertTableSQL = "INSERT INTO AUTHOR"
+				+ "( NAME, LAST_NAME, EMAIL, PHONE, NATIONALITY, DATA_BIRTH, GENDER, ADDRESS, SPOUSE) VALUES" 
+				+ "(?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 		try {
 			dbConnection = ConnectionFactory.getConnection();
 			preparedStatement = dbConnection.prepareStatement(insertTableSQL, Statement.RETURN_GENERATED_KEYS);
 
-			preparedStatement.setString(1, object.getNome());
-			preparedStatement.setString(2, object.getTelefone());
-			preparedStatement.setString(3, object.getCpf());
-			preparedStatement.setString(4, object.getGender().toString());
-			preparedStatement.setString(5, object.getEmail());
-			preparedStatement.setLong(6, object.getNacionality().getId());
-			preparedStatement.setTimestamp(7, new Timestamp(object.getBirthDate().getTime()));
-			preparedStatement.setString(8, object.getCpf());
-			preparedStatement.setString(9, object.getCpf());
+			preparedStatement.setString(1, object.getName());
+			preparedStatement.setString(2, object.getLastName());
+			preparedStatement.setString(3, object.getEmail());
+			preparedStatement.setString(4, object.getPhone());
+			preparedStatement.setString(5, object.getNacionality());
+			preparedStatement.setTimestamp(6, new Timestamp(object.getBirthDate().getTime()));
+			preparedStatement.setString(7, object.getGender().toString());
+			preparedStatement.setString(8, object.getAddress());
+			preparedStatement.setString(9, object.getSpouse());
 
 			if (preparedStatement.executeUpdate() == 1) {
 				// execute insert SQL stetement
 				resultSet = preparedStatement.getGeneratedKeys();
                 if(resultSet.next())
                 {
-                	object.setId(resultSet.getLong(1));
+                	object.setId(resultSet.getInt(1));
                 }
 				return object;
 			}
@@ -118,7 +110,7 @@ public class AuthorDAO implements GenericDAO<AuthorBean> {
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
 
-		String selectTableSQL = "SELECT * FROM INTEGRANTE WHERE ID_INTEGRANTE = ?;";
+		String selectTableSQL = "SELECT * FROM AUTHOR WHERE ID_AUTHOR = ?;";
 
 		try {
 			dbConnection = ConnectionFactory.getConnection();
@@ -129,24 +121,18 @@ public class AuthorDAO implements GenericDAO<AuthorBean> {
 			// execute select SQL stetement
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
+				
 				AuthorBean authorBean = new AuthorBean();
-				authorBean.setId(rs.getLong(""));
-				authorBean.setNome(rs.getString(""));
-				authorBean.setTelefone(rs.getString(""));
-				authorBean.setCpf(rs.getString(""));
-				
-				if(rs.getString("").equalsIgnoreCase("M")){
-					authorBean.setGender(GenderBean.Masculino);
-				} else if(rs.getString("").equalsIgnoreCase("F")){
-					authorBean.setGender(GenderBean.Feminino);
-				}
-				
-				authorBean.setEmail(rs.getString(""));
-				authorBean.setBirthDate(new Date(rs.getTimestamp("").getTime()));
-				
-				//authorBean.setNacionality(rs.getString(""));
-				
-				authorBean.setDescription(rs.getString(""));
+				authorBean.setId(rs.getInt("ID_AUTHOR"));
+				authorBean.setName(rs.getString("NAME"));
+				authorBean.setLastName(rs.getString("LAST_NAME"));
+				authorBean.setEmail(rs.getString("EMAIL"));
+				authorBean.setPhone(rs.getString("PHONE"));
+				authorBean.setNacionality(rs.getString("NATIONALITY"));
+				authorBean.setBirthDate(new Timestamp(rs.getTimestamp("DATA_BIRTH").getTime()));
+				authorBean.setGender(rs.getString("GENDER"));
+				authorBean.setAddress(rs.getString("ADDRESS"));			
+				authorBean.setSpouse(rs.getString("SPOUSE"));
 
 				return authorBean;
 			}
@@ -172,20 +158,31 @@ public class AuthorDAO implements GenericDAO<AuthorBean> {
 
 			dbConnection = ConnectionFactory.getConnection();
 
-			String sql = "UPDATE mydb.usuario SET NOME = ?, E_MAIL = ?,SEXO = ?,TELEFONE = ?,CEP = ?,RUA = ?,"
-					+ "BAIRRO = ?,NUMERO = ?,LOGIN = ?,SENHA = ?,TP_ACESSO_ID_TP_ACESSO = ?,TP_PESSOA_ID_TP = ?"
-					+ "WHERE CPF_CNPJ = ? || %";
+			String sql = "UPDATE `mydb`.`author`"+
+							"SET"+
+							"`NAME` =?,			"+					
+							"`LAST_NAME` = ?,"+
+							"`EMAIL` = ?,"+
+							"`PHONE` = ?,"+
+							"`NATIONALITY` = ?,"+
+							"`DATA_BIRTH` = ?,"+
+							"`GENDER` = ?,"+
+							"`ADDRESS` = ?,"+
+							"`SPOUSE` = ?"+
+						"WHERE ID_AUTHOR = ?>";
 
 			preparedStatement = dbConnection.prepareStatement(sql);
-			preparedStatement.setString(1, object.getNome());
-			preparedStatement.setString(2, object.getTelefone());
-			preparedStatement.setString(3, object.getCpf());
-			preparedStatement.setString(4, object.getGender().toString());
-			preparedStatement.setString(5, object.getEmail());
-			preparedStatement.setTimestamp(6, new Timestamp(object.getBirthDate().getTime()));
-			preparedStatement.setLong(7, object.getNacionality().getId());
-			preparedStatement.setString(8, object.getDescription());
-
+			preparedStatement.setString(1, object.getName());
+			preparedStatement.setString(2, object.getLastName());
+			preparedStatement.setString(3, object.getEmail());
+			preparedStatement.setString(4, object.getPhone());
+			preparedStatement.setString(5, object.getNacionality());
+			preparedStatement.setTimestamp(6, new Timestamp(object.getBirthDate().getTime()));		
+			preparedStatement.setString(7, object.getGender().toString());			
+			preparedStatement.setString(8, object.getAddress());
+			preparedStatement.setString(9, object.getSpouse());
+			preparedStatement.setInt(10, object.getId());
+			
 			ResultSet rs = preparedStatement.executeQuery();
 
 			if (rs.next()) {
@@ -212,7 +209,7 @@ public class AuthorDAO implements GenericDAO<AuthorBean> {
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
 
-		String deleteSQL = "DELETE FROM INTEGRANTE WHERE ID_INTEGRANTE = ?;";
+		String deleteSQL = "DELETE FROM AUTHOR WHERE ID_AUTHOR = ?;";
 
 		try {
 			dbConnection = ConnectionFactory.getConnection();
@@ -240,7 +237,7 @@ public class AuthorDAO implements GenericDAO<AuthorBean> {
 		Connection dbConnection = null;
 		Statement statement = null;
 
-		String deleteSQL = "DELETE FROM INTEGRANTE;";
+		String deleteSQL = "DELETE FROM AUTHOR;";
 
 		try {
 			dbConnection = ConnectionFactory.getConnection();
