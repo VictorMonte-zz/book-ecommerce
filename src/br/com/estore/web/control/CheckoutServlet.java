@@ -78,11 +78,18 @@ public class CheckoutServlet extends HttpServlet {
 
 					// limpa o carrinho
 					session.setAttribute("shoppingCart", null);
+					session.setAttribute("totalCompra", 0.0);
+					session.setAttribute("isLogged", 1);
 
 				}
 			}
+			else
+			{
+				session.setAttribute("isLogged", 0);
+			}
 			// volta pro carrinho
 			String url = "shoppingcart?op=listar";
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);
 

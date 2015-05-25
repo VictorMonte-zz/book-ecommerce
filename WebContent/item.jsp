@@ -32,88 +32,89 @@
 <body>
 
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"
-		style="z-index:5">
-	<div class="container" style="z-index: 5">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="index.jsp">eStore</a>
-		</div>
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="search?op=carregar"><span
-						class="glyphicon glyphicon-book"></span> Buscar Livros</a></li>
-				<li><a href="#">Sobre</a></li>
-				<li><a href="#">Contato</a></li>
-			</ul>
-			<ul class="nav navbar-nav" style="z-index: 5">
-				<li class="divider-vertical" style="z-index: 5"></li>
-				<li class="dropdown" style="z-index: 5"><a
-					class="dropdown-toggle" href="#" data-toggle="dropdown">Login<strong
-						class="caret"></strong></a>
-					<div class="dropdown-menu"
-						style="padding: 20px; padding-bottom: 0px; z-index: 5">
-						<br />
-						<form method="post" action="login" accept-charset="UTF-8"
-							role="search">
+		style="z-index: 5">
+		<div class="container" style="z-index: 5">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.jsp">eStore</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="search?op=carregar"><span
+							class="glyphicon glyphicon-book"></span> Buscar Livros</a></li>
+					<li><a href="#">Sobre</a></li>
+					<li><a href="#">Contato</a></li>
+				</ul>
+				<ul class="nav navbar-nav" style="z-index: 5">
+					<li class="divider-vertical" style="z-index: 5"></li>
+					<li class="dropdown" style="z-index: 5"><a
+						class="dropdown-toggle" href="#" data-toggle="dropdown">Login<strong
+							class="caret"></strong></a>
+						<div class="dropdown-menu"
+							style="padding: 20px; padding-bottom: 0px; z-index: 5">
+							<br />
+							<form method="post" action="login" accept-charset="UTF-8"
+								role="search">
 
-							<input style="margin-bottom: 15px;" type="text"
-								placeholder="Usuário" id="txtLogin" name="txtLogin"> <input
-								style="margin-bottom: 15px;" type="password" placeholder="Senha"
-								id="txtPassword" name="txtPassword">
-							<!-- <input
+								<input style="margin-bottom: 15px;" type="text"
+									placeholder="Usuário" id="txtLogin" name="txtLogin"> <input
+									style="margin-bottom: 15px;" type="password"
+									placeholder="Senha" id="txtPassword" name="txtPassword">
+								<!-- <input
 								style="float: left; margin-right: 10px;" type="checkbox"
 								name="remember-me" id="remember-me" value="1"> -->
-							<!-- <label
+								<!-- <label
 								class="string optional" for="user_remember_me">
 								Lembre-me</label> -->
-							<input class="btn btn-primary" type="submit" id="sign-in"
-								value="Entra">
-						</form>
-						<br /> <a href="customerregistration.jsp">Cadastrar-me</a> <br />
-						<br />
-					</div></li>
-			</ul>
-			<c:choose>
-				<c:when test="${user.is_admin == 1}">
-					<!-- Allow to register -->
-					<ul class="nav navbar-nav" style="z-index: 5">
-						<li role="presentation" class="dropdown" style="z-index: 5"><a
-							class="dropdown-toggle" data-toggle="dropdown" href="#"
-							role="button" aria-expanded="false"> Cadastro <span
-								class="caret" style="z-index: 5"></span>
-						</a>
-							<ul class="dropdown-menu" role="menu" style="z-index: 5">
-								<li><a href="book?op=listar">Livros</a></li>
-								<li><a href="Crud.html">Autores</a></li>
-								<li><a href="Crud.html">Categoria</a></li>
-								<li class="divider"></li>
-								<li><a href="category?op=listar">Promoção</a></li>
-							</ul></li>
-						<li><a href="shoppingcart?op=listar"><span
-								class="glyphicon glyphicon-shopping-cart"></span> Carinho</a></li>
-					</ul>
-				</c:when>
-				<c:otherwise>
-					<ul class="nav navbar-nav" style="z-index: 5">
-						<li><a href="shoppingcart?op=listar"><span
-								class="glyphicon glyphicon-shopping-cart"></span> Carinho</a></li>
-					</ul>
-				</c:otherwise>
-			</c:choose>
+								<input class="btn btn-primary" type="submit" id="sign-in"
+									value="Entra">
+							</form>
+							<br /> <a href="customerregistration.jsp">Cadastrar-me</a> <br />
+							<br />
+						</div></li>
+				</ul>
+				<c:choose>
+					<c:when test="${user.is_admin == 1}">
+						<!-- Allow to register -->
+						<ul class="nav navbar-nav" style="z-index: 5">
+							<li role="presentation" class="dropdown" style="z-index: 5"><a
+								class="dropdown-toggle" data-toggle="dropdown" href="#"
+								role="button" aria-expanded="false"> Cadastro <span
+									class="caret" style="z-index: 5"></span>
+							</a>
+								<ul class="dropdown-menu" role="menu" style="z-index: 5">
+									<li><a href="book?op=listar">Livros</a></li>
+									<li><a href="Crud.html">Autores</a></li>
+									<li><a href="Crud.html">Categoria</a></li>
+									<li class="divider"></li>
+									<li><a href="category?op=listar">Promoção</a></li>
+								</ul></li>
+							<li><a href="shoppingcart?op=listar"><span
+									class="glyphicon glyphicon-shopping-cart"></span> Carinho</a></li>
+						</ul>
+					</c:when>
+					<c:otherwise>
+						<ul class="nav navbar-nav" style="z-index: 5">
+							<li><a href="shoppingcart?op=listar"><span
+									class="glyphicon glyphicon-shopping-cart"></span> Carinho</a></li>
+						</ul>
+					</c:otherwise>
+				</c:choose>
 
 
+			</div>
+			<!-- /.navbar-collapse -->
 		</div>
-		<!-- /.navbar-collapse -->
-	</div>
-	<!-- /.container --> </nav>
+		<!-- /.container -->
+	</nav>
 	<p>
 		<br />
 	</p>
@@ -178,6 +179,7 @@
 				<div class="thumbnail">
 					<!-- <img class="img-responsive" src="http://placehold.it/800x300"
 						alt="">  -->
+					<br />
 					<div style="margin-left: 35%; width: 260px; height: 365px;">
 						<img src="img/capa/${book.imageDirectory }" alt="">
 					</div>
@@ -212,7 +214,8 @@
 										name="txtQuantidade" style="width: 150px;">
 								</div>
 								<input type="submit" value="Adicionar ao Carrinho"
-									class="btn btn-success" /> <a href="wishlist?op=cadastrar&id=${book.id}"
+									class="btn btn-success" /> <a
+									href="wishlist?op=cadastrar&id=${book.id}"
 									class="btn btn-primary"> Adicionar a lista Desejo </a>
 							</form>
 

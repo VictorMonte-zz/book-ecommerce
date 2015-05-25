@@ -69,7 +69,8 @@ public class HomeServlet extends HttpServlet {
 			session.setAttribute("books", books);
 			
 			//limpa os erros
-			session.setAttribute("error", 0);			
+			session.setAttribute("error", 0);
+			session.setAttribute("isLogged", 0);
 		}
 		
 		//Categoria
@@ -81,7 +82,6 @@ public class HomeServlet extends HttpServlet {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("categories", categories);
 		}
-		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);

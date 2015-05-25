@@ -47,15 +47,16 @@ public class SearchServlet extends HttpServlet {
 		String url = "";
 		HttpSession session = null;
 
+		BookBean book = null;
 		BookDAO dao = null;
 		List<BookBean> books = null;
-		
+
 		PublishingHouseDAO daoPublishingHouse = null;
 		List<PublishingHouseBean> publishingHouses = null;
-		
+
 		AuthorDAO daoAuthor = null;
 		List<AuthorBean> authors = null;
-		
+
 		CategoryDAO daoCategory = null;
 		List<CategoryBean> categories = null;
 
@@ -76,6 +77,7 @@ public class SearchServlet extends HttpServlet {
 
 							session = request.getSession(true);
 							session.setAttribute("booksSimple", books);
+							session.setAttribute("searchType", 1);
 
 							url = "searchofbooks.jsp";
 
@@ -91,50 +93,82 @@ public class SearchServlet extends HttpServlet {
 
 					break;
 				case "buscaAvancada":
+
+					nome = request.getParameter("txtNomeAvancada");
+
+					if (nome != null) {
+						String editoraID = request.getParameter("ddlEditora");
+						String autorID = request.getParameter("ddlAutor");
+						String categoriaID = request
+								.getParameter("ddlCategoria");
+
+						book = new BookBean();
+						book.setAuthorId(Integer.parseInt(autorID));
+						;
+						book.setCategoryId(Integer.parseInt(categoriaID));
+						book.setPublishingHouseId(Integer.parseInt(editoraID));
+						book.setTitle(nome);
+
+						dao = new BookDAO();
+						books = dao.getAll(book);
+
+						if (books.size() > 0) {
+
+							session = request.getSession(true);
+							session.setAttribute("booksAvancada", books);
+							session.setAttribute("searchType", 2);
+
+						}
+					}
+					else
+					{
+						
+					}
 					
-					nome = request.getParameter("txtNomeSimples");
-					String editoraID = request.getParameter("ddlEditora"); 
-					String autorID = request.getParameter("ddlAutor");
-					String categoriaID = request.getParameter("ddlCategoria");
+					url = "searchofbooks.jsp";
+
+					RequestDispatcher dispatcher = request
+							.getRequestDispatcher(url);
+					dispatcher.forward(request, response);
 
 					break;
 				case "carregar":
-					
-					//Editora
+
+					// Editora
 					daoPublishingHouse = new PublishingHouseDAO();
-					publishingHouses = daoPublishingHouse.getAll();					
-					
+					publishingHouses = daoPublishingHouse.getAll();
+
 					if (publishingHouses.size() > 0) {
 
 						session = request.getSession(true);
-						session.setAttribute("publishingHouses", publishingHouses);
+						session.setAttribute("publishingHouses",
+								publishingHouses);
 					}
-					
-					//Autor
+
+					// Autor
 					daoAuthor = new AuthorDAO();
-					authors = daoAuthor.getAll();					
-					
+					authors = daoAuthor.getAll();
+
 					if (authors.size() > 0) {
 
 						session = request.getSession(true);
 						session.setAttribute("authors", authors);
 					}
-					
-					//Categoria
+
+					// Categoria
 					daoCategory = new CategoryDAO();
-					categories = daoCategory.getAll();					
-					
+					categories = daoCategory.getAll();
+
 					if (categories.size() > 0) {
 
 						session = request.getSession(true);
 						session.setAttribute("categories", categories);
 					}
 
-					//ir para a tela
+					// ir para a tela
 					url = "searchofbooks.jsp";
 
-					RequestDispatcher dispatcher = request
-							.getRequestDispatcher(url);
+					dispatcher = request.getRequestDispatcher(url);
 					dispatcher.forward(request, response);
 
 					break;
