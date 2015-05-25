@@ -47,8 +47,8 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="index.jsp"><span
-						class="glyphicon glyphicon-book"></span> Livros</a></li>
+				<li><a href="search?op=carregar"><span
+						class="glyphicon glyphicon-book"></span> Buscar Livros</a></li>
 				<li><a href="#">Sobre</a></li>
 				<li><a href="#">Contato</a></li>
 			</ul>
@@ -76,8 +76,8 @@
 							<input class="btn btn-primary" type="submit" id="sign-in"
 								value="Entra">
 						</form>
+						<br /> <a href="customerregistration.jsp">Cadastrar-me</a> <br />
 						<br />
-						<a href="customerregistration.jsp">Cadastrar-me</a> <br /> <br />
 					</div></li>
 			</ul>
 			<c:choose>
@@ -101,11 +101,11 @@
 					</ul>
 				</c:when>
 				<c:otherwise>
-						<ul class="nav navbar-nav" style="z-index: 5">
-							<li><a href="shoppingcart?op=listar"><span
-									class="glyphicon glyphicon-shopping-cart"></span> Carinho</a></li>
-						</ul>
-					</c:otherwise>
+					<ul class="nav navbar-nav" style="z-index: 5">
+						<li><a href="shoppingcart?op=listar"><span
+								class="glyphicon glyphicon-shopping-cart"></span> Carinho</a></li>
+					</ul>
+				</c:otherwise>
 			</c:choose>
 
 
@@ -120,67 +120,37 @@
 		<br />
 	</p>
 
-	<!-- Page Content 
-	<!--
-	<c:choose>
-					<c:when test="${!empty user.name}">
-						<p class="lead">Bem vindo, ${user.name}</p>
-					</c:when>
-					<c:when test="${!empty error}">
-						<p class="lead">${error}</p>
-					</c:when>
-					<c:otherwise>
-						<p class="lead">Bem vindo, Visitante</p>
-					</c:otherwise>
-				</c:choose> 
-	-->
+	<!-- Page Content -->
+
+
 	<div class="container">
 
 		<div class="row">
 
 			<div class="col-md-3">
+				<c:choose>
+					<c:when test="${!empty user.name}">
+						<p class="label">Bem vindo, ${user.name}</p>
+					</c:when>
+					<c:otherwise>
+						<p class="label">Bem vindo, Visitante</p>
+					</c:otherwise>
+				</c:choose>
 				<p class="lead">Categorias</p>
 				<div class="list-group">
-					<a href="#" class="list-group-item"> Viagem </a> <a href="#"
-						class="list-group-item"> Infantil </a> <a href="#"
-						class="list-group-item"> Teen </a> <a href="#"
-						class="list-group-item"> Metodologia de Pesquisa </a> <a href="#"
-						class="list-group-item"> Sustentabilidade </a> <a href="#"
-						class="list-group-item"> Videogames </a> <a href="#"
-						class="list-group-item"> Autoajuda </a> <a href="#"
-						class="list-group-item"> Biografias </a> <a href="#"
-						class="list-group-item"> Administração </a> <a href="#"
-						class="list-group-item"> Ciências Biológicas </a> <a href="#"
-						class="list-group-item"> Ciências Exatas </a> <a href="#"
-						class="list-group-item"> Ciências Sociais </a> <a href="#"
-						class="list-group-item"> Comportamento </a> <a href="#"
-						class="list-group-item"> Comunicação </a> <a href="#"
-						class="list-group-item"> Dicionários </a> <a href="#"
-						class="list-group-item"> Didáticos </a> <a href="#"
-						class="list-group-item"> Direito </a> <a href="#"
-						class="list-group-item"> Economia </a> <a href="#"
-						class="list-group-item"> Engenharia </a> <a href="#"
-						class="list-group-item"> Educação </a> <a href="#"
-						class="list-group-item"> Concursos Públicos </a> <a href="#"
-						class="list-group-item"> Ensino de Línguas </a> <a href="#"
-						class="list-group-item"> Esoterismo </a> <a href="#"
-						class="list-group-item"> Esportes e Lazer </a> <a href="#"
-						class="list-group-item"> Filosofia </a> <a href="#"
-						class="list-group-item"> Geografia </a> <a href="#"
-						class="list-group-item"> História </a> <a href="#"
-						class="list-group-item"> Gastronomia </a> <a href="#"
-						class="list-group-item"> HQs </a> <a href="#"
-						class="list-group-item"> Humor e Entretenimento </a> <a href="#"
-						class="list-group-item"> Informática e Tecnologia </a> <a href="#"
-						class="list-group-item"> LGBT </a> <a href="#"
-						class="list-group-item"> Literatura Internacional </a> <a href="#"
-						class="list-group-item"> Literatura Nacional </a> <a href="#"
-						class="list-group-item"> Medicina </a> <a href="#"
-						class="list-group-item"> Pets </a> <a href="#"
-						class="list-group-item"> Arquitetura </a> <a href="#"
-						class="list-group-item"> Psicologia </a> <a href="#"
-						class="list-group-item"> Religião </a> <a href="#"
-						class="list-group-item"> Saúde, Fitness e Beleza </a>
+
+					<c:choose>
+						<c:when test="${!empty categories}">						
+							<a href="home" class="list-group-item">Todas</a>
+							<c:forEach items="${categories}" var="category">
+								<a href="home?op=filtrar&id=${category.id}" class="list-group-item"> ${category.description}
+								</a>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<!-- nenhum categoria cadastrada  -->
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 
@@ -259,11 +229,7 @@
 						<c:otherwise>
 							<div class="jumbotron">
 								<h1>Livros não disponíveis.</h1>
-								<p>Desculpe-nos o transtorno.</p>
-								<p>
-									<a class="btn btn-primary btn-lg" href="#" role="button">Faça
-										um reclamação</a>
-								</p>
+								<p>Desculpe-nos o transtorno.</p>								
 							</div>
 						</c:otherwise>
 					</c:choose>

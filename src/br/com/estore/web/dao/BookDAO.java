@@ -60,6 +60,106 @@ public class BookDAO implements GenericDAO<BookBean> {
 			}
 		}
 	}
+	
+	public List<BookBean> getAll(String pName) throws ClassNotFoundException, SQLException {
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+		try {
+
+			dbConnection = ConnectionFactory.getConnection();
+
+			String sql = "SELECT" + " book.ID_BOOK," + " book.TITLE,"
+					+ " book.PRICE," + " book.ISBN,"
+					+ " book.NUMBER_PAGES," + " book.DESCRIPTION,"
+					+ " book.IMAGE_DIRETORY," + " book.LIKEBOOK,"
+					+ " book.ID_AUTHOR," + " book.ID_PUBLISHING_HOUSE,"
+					+ " book.ID_CATEGORY" + " FROM mydb.book"
+							+ " WHERE book.TITLE LIKE ? ;";
+
+			preparedStatement = dbConnection.prepareStatement(sql);
+			preparedStatement.setString(1, "%" + pName + "%");
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			List<BookBean> listOfBooks = new ArrayList<BookBean>();
+
+			while (rs.next()) {
+				BookBean book = new BookBean();
+				book.setId(rs.getInt("ID_BOOK"));
+				book.setTitle(rs.getString("TITLE"));
+				book.setPrice(rs.getDouble("PRICE"));
+				book.setIsbn(rs.getInt("ISBN"));
+				book.setNumerPages(rs.getInt("NUMBER_PAGES"));
+				book.setDescription(rs.getString("DESCRIPTION"));
+				book.setImageDirectory(rs.getString("IMAGE_DIRETORY"));
+				book.setLikebook(rs.getInt("LIKEBOOK"));
+				book.setAuthorId(rs.getInt("ID_AUTHOR"));
+				book.setPublishingHouseId(rs.getInt("ID_PUBLISHING_HOUSE"));
+				book.setCategoryId(rs.getInt("ID_CATEGORY"));
+				listOfBooks.add(book);
+			}
+
+			return listOfBooks;
+
+		} finally {
+			if (preparedStatement != null) {
+				preparedStatement.close();
+			}
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+		}
+	}
+	
+	public List<BookBean> getAll(int categoryID) throws ClassNotFoundException, SQLException {
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+		try {
+
+			dbConnection = ConnectionFactory.getConnection();
+
+			String sql = "SELECT" + " book.ID_BOOK," + " book.TITLE,"
+					+ " book.PRICE," + " book.ISBN,"
+					+ " book.NUMBER_PAGES," + " book.DESCRIPTION,"
+					+ " book.IMAGE_DIRETORY," + " book.LIKEBOOK,"
+					+ " book.ID_AUTHOR," + " book.ID_PUBLISHING_HOUSE,"
+					+ " book.ID_CATEGORY" + " FROM mydb.book"
+							+ " WHERE book.ID_CATEGORY = ? ;";
+
+			preparedStatement = dbConnection.prepareStatement(sql);
+			preparedStatement.setInt(1, categoryID);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			List<BookBean> listOfBooks = new ArrayList<BookBean>();
+
+			while (rs.next()) {
+				BookBean book = new BookBean();
+				book.setId(rs.getInt("ID_BOOK"));
+				book.setTitle(rs.getString("TITLE"));
+				book.setPrice(rs.getDouble("PRICE"));
+				book.setIsbn(rs.getInt("ISBN"));
+				book.setNumerPages(rs.getInt("NUMBER_PAGES"));
+				book.setDescription(rs.getString("DESCRIPTION"));
+				book.setImageDirectory(rs.getString("IMAGE_DIRETORY"));
+				book.setLikebook(rs.getInt("LIKEBOOK"));
+				book.setAuthorId(rs.getInt("ID_AUTHOR"));
+				book.setPublishingHouseId(rs.getInt("ID_PUBLISHING_HOUSE"));
+				book.setCategoryId(rs.getInt("ID_CATEGORY"));
+				listOfBooks.add(book);
+			}
+
+			return listOfBooks;
+
+		} finally {
+			if (preparedStatement != null) {
+				preparedStatement.close();
+			}
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+		}
+	}
 
 	@Override
 	public BookBean save(BookBean pBook) throws ClassNotFoundException,

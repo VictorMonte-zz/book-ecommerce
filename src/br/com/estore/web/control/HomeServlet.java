@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.estore.web.dao.BookDAO;
+import br.com.estore.web.dao.CategoryDAO;
 import br.com.estore.web.model.BookBean;
+import br.com.estore.web.model.CategoryBean;
 
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {
@@ -49,7 +51,18 @@ public class HomeServlet extends HttpServlet {
 		
 		//carregar livros
 		BookDAO dao = new BookDAO();
-		List<BookBean> books = dao.getAll();
+		
+		List<BookBean> books = null;
+		
+		String op = request.getParameter("op");
+		String id = request.getParameter("id");
+		if (op != null && id != null) {
+			books = dao.getAll(Integer.parseInt(id));
+		}
+		else {
+			books = dao.getAll();
+		}
+		
 		
 		if (books != null) {
 			HttpSession session = request.getSession(true);
@@ -58,6 +71,17 @@ public class HomeServlet extends HttpServlet {
 			//limpa os erros
 			session.setAttribute("error", 0);			
 		}
+		
+		//Categoria
+		CategoryDAO daoCategory = new CategoryDAO();
+		List<CategoryBean> categories = daoCategory.getAll();					
+		
+		if (categories.size() > 0) {
+
+			HttpSession session = request.getSession(true);
+			session.setAttribute("categories", categories);
+		}
+		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
