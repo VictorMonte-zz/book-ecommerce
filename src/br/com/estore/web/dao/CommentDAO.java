@@ -12,37 +12,51 @@ import java.util.List;
 
 import br.com.estore.web.factory.ConnectionFactory;
 import br.com.estore.web.model.CommentBean;
+import br.com.estore.web.model.CustomerBean;
 
 public class CommentDAO implements GenericDAO<CommentBean> {
 
-	@Override
-	public List<CommentBean> getAll() throws ClassNotFoundException,
+	public List<CommentBean> getAll(int id) throws ClassNotFoundException,
 			SQLException {
 		// TODO Auto-generated method stub
 		List<CommentBean> listComment = new ArrayList<>();
 		Connection dbConnection = null;
-		Statement statement = null;
+		PreparedStatement preparedStatement = null;
+		CustomerBean customer = null;
+		CustomerDAO dao = null;
 
-		String selectTableSQL = "SELECT * FROM ALGO;";
+		String selectTableSQL = "SELECT * FROM mydb.comentary WHERE ID_BOOK = ?";
 
 		try {
 			dbConnection = ConnectionFactory.getConnection();
-			statement = dbConnection.createStatement();
+			preparedStatement = dbConnection.prepareStatement(selectTableSQL,
+					Statement.RETURN_GENERATED_KEYS);
 
-			// execute select SQL stetement
-			ResultSet rs = statement.executeQuery(selectTableSQL);
+			preparedStatement.setInt(1, id);
+
+			ResultSet rs = preparedStatement.executeQuery();
+			
 			while (rs.next()) {
+				
+				
 				CommentBean commentBean = new CommentBean();
-				commentBean.setId(rs.getInt(""));
-				commentBean.setDescription(rs.getString(""));
-				commentBean.setDate(new Date(rs.getTimestamp("").getTime()));
-				commentBean.setCpf(rs.getString(""));
+				commentBean.setId(rs.getInt("ID_COMENTARY"));
+				commentBean.setDescription(rs.getString("DESCRIPTION"));
+				commentBean.setDateComment(new Date(rs.getTimestamp("DATECOMENTARY").getTime()));
+				commentBean.setIdCustomer(rs.getInt("CUSTOMER_ID"));
+				commentBean.setIdBook(rs.getInt("ID_BOOK"));
+				
+				customer = new CustomerBean();
+				dao = new CustomerDAO();
+				customer = dao.get(rs.getInt("ID_BOOK"));
+				
+				commentBean.setCustomer(customer);
 
 				listComment.add(commentBean);
 			}
 		} finally {
-			if (statement != null) {
-				statement.close();
+			if (preparedStatement != null) {
+				preparedStatement.close();
 			}
 			if (dbConnection != null) {
 				dbConnection.close();
@@ -51,6 +65,7 @@ public class CommentDAO implements GenericDAO<CommentBean> {
 		return listComment;
 	}
 
+	
 	@Override
 	public CommentBean save(CommentBean object) throws ClassNotFoundException,
 			SQLException {
@@ -59,17 +74,18 @@ public class CommentDAO implements GenericDAO<CommentBean> {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 
-		String insertTableSQL = "INSERT INTO INTEGRANTE"
-				+ "(NOME, MATRICULA, ID_EQUIPE) VALUES" 
-				+ "(?, ?, ?);";
+		String insertTableSQL = "INSERT INTO `mydb`.`comentary`"+
+		"(`DESCRIPTION`,`DATECOMENTARY`,`CUSTOMER_ID`,`ID_BOOK`)" +
+		"VALUES(?,?,?,?);";
 
 		try {
 			dbConnection = ConnectionFactory.getConnection();
 			preparedStatement = dbConnection.prepareStatement(insertTableSQL, Statement.RETURN_GENERATED_KEYS);
 
 			preparedStatement.setString(1, object.getDescription());
-			preparedStatement.setTimestamp(2, new Timestamp(object.getDate().getTime()));
-			preparedStatement.setString(3, object.getCpf());
+			preparedStatement.setTimestamp(2, new Timestamp(object.getDateComment().getTime()));
+			preparedStatement.setInt(3, object.getIdCustomer());
+			preparedStatement.setInt(4, object.getIdBook());
 
 			if (preparedStatement.executeUpdate() == 1) {
 				// execute insert SQL stetement
@@ -91,40 +107,19 @@ public class CommentDAO implements GenericDAO<CommentBean> {
 		return null;
 	}
 
+
+	
+	@Override
+	public List<CommentBean> getAll() throws ClassNotFoundException,
+			SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	@Override
 	public CommentBean get(Integer id) throws ClassNotFoundException,
 			SQLException {
 		// TODO Auto-generated method stub
-		Connection dbConnection = null;
-		PreparedStatement preparedStatement = null;
-
-		String selectTableSQL = "SELECT * FROM INTEGRANTE WHERE ID_INTEGRANTE = ?;";
-
-		try {
-			dbConnection = ConnectionFactory.getConnection();
-			preparedStatement = dbConnection.prepareStatement(selectTableSQL, Statement.RETURN_GENERATED_KEYS);
-
-			preparedStatement.setInt(1, id);
-			
-			// execute select SQL stetement
-			ResultSet rs = preparedStatement.executeQuery();
-			while (rs.next()) {
-				CommentBean commentBean = new CommentBean();
-				commentBean.setId(rs.getInt(""));
-				commentBean.setDescription(rs.getString(""));
-				commentBean.setDate(new Date(rs.getTimestamp("").getTime()));
-				commentBean.setCpf(rs.getString(""));
-
-				return commentBean;
-			}
-		} finally {
-			if (preparedStatement != null) {
-				preparedStatement.close();
-			}
-			if (dbConnection != null) {
-				dbConnection.close();
-			}
-		}
 		return null;
 	}
 
@@ -139,55 +134,12 @@ public class CommentDAO implements GenericDAO<CommentBean> {
 	public boolean delete(CommentBean object) throws ClassNotFoundException,
 			SQLException {
 		// TODO Auto-generated method stub
-		Connection dbConnection = null;
-		PreparedStatement preparedStatement = null;
-
-		String deleteSQL = "DELETE FROM INTEGRANTE WHERE ID_INTEGRANTE = ?;";
-
-		try {
-			dbConnection = ConnectionFactory.getConnection();
-			preparedStatement = dbConnection.prepareStatement(deleteSQL);
-			preparedStatement.setInt(1, object.getId());
-
-			// execute delete SQL stetement
-			if (preparedStatement.executeUpdate() == 1) {
-				return true;
-			}
-		} finally {
-			if (preparedStatement != null) {
-				preparedStatement.close();
-			}
-			if (dbConnection != null) {
-				dbConnection.close();
-			}
-		}
 		return false;
 	}
 
 	@Override
 	public boolean deleteAll() throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		Connection dbConnection = null;
-		Statement statement = null;
-
-		String deleteSQL = "DELETE FROM INTEGRANTE;";
-
-		try {
-			dbConnection = ConnectionFactory.getConnection();
-			statement = dbConnection.createStatement();
-
-			// execute delete SQL stetement
-			if (statement.executeUpdate(deleteSQL) == 1) {
-				return true;
-			}
-		} finally {
-			if (statement != null) {
-				statement.close();
-			}
-			if (dbConnection != null) {
-				dbConnection.close();
-			}
-		}
 		return false;
 	}
 

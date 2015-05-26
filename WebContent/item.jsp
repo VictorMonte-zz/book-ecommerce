@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Shop Item - Start Bootstrap Template</title>
+<title>Shop Item</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -179,7 +179,6 @@
 				<div class="thumbnail">
 					<!-- <img class="img-responsive" src="http://placehold.it/800x300"
 						alt="">  -->
-					<br />
 					<div style="margin-left: 35%; width: 260px; height: 365px;">
 						<img src="img/capa/${book.imageDirectory }" alt="">
 					</div>
@@ -271,57 +270,71 @@
 					</div>
 				</div>
 
-				<div class="well">
+				<form method="post" action="comment?id=${book.id}">
+					<div class="well">
+						<div class="text-right">
 
-					<div class="text-right">
-						<a class="btn btn-success">Adicionar comentario</a>
-					</div>
+							<input type="text" class="form-control" id="txtDescription"
+								name="txtDescription"> <br /> <a
+								href="comment?id=${book.id}" class="btn btn-success">Adicionar
+								comentario</a> <br />
+							<c:choose>
+								<c:when test="${!empty MensageComment}">
+									<br />
+									<div class="alert alert-success" role="alert">
+										${MensageComment}
+										<button type="button" class="close" data-dismiss="alert"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
 
-					<hr>
+								</c:when>
+								<c:when test="${!empty MensagemErro}">
+									<br />
+									<div class="alert alert-danger" role="alert">
+										${MensagemErro}
+										<button type="button" class="close" data-dismiss="alert"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
 
-					<div class="row">
-						<div class="col-md-12">
-							<span class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star-empty"></span> Anonymous <span
-								class="pull-right">10 days ago</span>
-							<p>This product was great in terms of quality. I would
-								definitely buy another!</p>
+								</c:when>
+							</c:choose>
 						</div>
+
+						<hr>
+
+						<c:choose>
+							<c:when test="${!empty comments}">
+								<c:forEach items="${comments}" var="comment">
+									<div class="row">
+										<div class="col-md-12">
+											<span class="glyphicon glyphicon-star"></span> <span
+												class="glyphicon glyphicon-star"></span> <span
+												class="glyphicon glyphicon-star"></span> <span
+												class="glyphicon glyphicon-star"></span> <span
+												class="glyphicon glyphicon-star-empty"></span>
+											${comment.description} <span class="pull-right">${comment.dateComment}</span>
+											<p>${comment.description}</p>
+										</div>
+									</div>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td colspan="11">
+										<div class="alert alert-info" role="alert">
+											<b>Nenhum</b> Comentario cadastrado.
+										</div>
+									</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
+
 					</div>
-
-					<hr>
-
-					<div class="row">
-						<div class="col-md-12">
-							<span class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star-empty"></span> Anonymous <span
-								class="pull-right">12 days ago</span>
-							<p>I've alredy ordered another one!</p>
-						</div>
-					</div>
-
-					<hr>
-
-					<div class="row">
-						<div class="col-md-12">
-							<span class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star-empty"></span> Anonymous <span
-								class="pull-right">15 days ago</span>
-							<p>I've seen some better than this, but not at this price. I
-								definitely recommend this item.</p>
-						</div>
-					</div>
-
-				</div>
+				</form>
 
 			</div>
 
